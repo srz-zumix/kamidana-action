@@ -20,6 +20,6 @@ jobs:
           output_file: test.txt
           data_file: github_context.json
       - run: |
-          echo "${{ steps.kamidana.output.text }}" | tee output.txt
+          echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
           diff output.txt test.txt
 
