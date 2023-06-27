@@ -8,13 +8,13 @@ inputs:
     required: false
   variables:
     required: false
+  format:
+    description: 'To be used with the "variables" input, can be one of: yaml,json,toml,csv,tsv,raw,env,md,markdown,spreadsheet'
+    required: false
+    default: env
   data_file:
-    description: 'See "data_format" for supported formats'
+    description: 'support yaml, json, toml'
     required: false
-  data_format:
-    description: 'To be used with the "data_file" input, can be one of: yaml, json, toml'
-    required: false
-    default: json
 
 runs:
   using: "composite"
@@ -34,8 +34,8 @@ runs:
         INPUTS_TEMPLATE: ${{ inputs.template }}
         INPUTS_OUTPUT_FILE: ${{ inputs.output_file }}
         INPUTS_VARIABLES: ${{ inputs.variables }}
+        INPUTS_FORMAT: ${{ inputs.format }}
         INPUTS_DATA_FILE: ${{ inputs.data_file }}
-        INPUTS_DATA_FORMAT: ${{ inputs.data_format }}
       run: "${GITHUB_ACTION_PATH}/entorypoint.sh"
 
 branding:

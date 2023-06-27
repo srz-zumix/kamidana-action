@@ -16,5 +16,4 @@ jobs:
           template: testdata/test.j2
           output_file: test.txt
           data_file: ${{ env.GITHUB_EVENT_PATH }}
-          data_format: json
       - run: cat test.txt

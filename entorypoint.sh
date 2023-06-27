@@ -6,8 +6,8 @@ declare -a KAMIDANA_OPTINOS
 if [ -n "${INPUTS_DATA_FILE}" ]; then
     KAMIDANA_OPTINOS+=(--data "${INPUTS_DATA_FILE}")
 fi
-if [ -n "${INPUTS_DATA_FORMAT}" ]; then
-    KAMIDANA_OPTINOS+=(--data-format "${INPUTS_DATA_FORMAT}")
+if [ -n "${INPUTS_FORMAT}" ]; then
+    KAMIDANA_OPTINOS+=(--input-format "${INPUTS_FORMAT}")
 fi
 
 OUTPUT_FILE=${INPUTS_OUTPUT_FILE:-kamidana-output.txt}
