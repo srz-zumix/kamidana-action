@@ -13,9 +13,13 @@ jobs:
         run: |
           echo "${GITHUB_CONTEXT}" | tee github_context.json
       - name: kamidana
+        id: kamidana
         uses: ./
         with:
           template: testdata/test.j2
           output_file: test.txt
           data_file: github_context.json
-      - run: cat test.txt
+      - run: |
+          echo "${{ steps.kamidana.output.text }}" | tee output.txt
+          diff output.txt test.txt
+
