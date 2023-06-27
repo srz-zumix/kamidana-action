@@ -15,5 +15,5 @@ jobs:
         with:
           template: testdata/test.j2
           output_file: test.txt
-          data_file: event.json
+          data_file: ./event.json
       - run: cat test.txt
