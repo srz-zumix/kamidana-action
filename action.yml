@@ -16,6 +16,11 @@ inputs:
     description: 'support yaml, json, toml'
     required: false
 
+outputs:
+  text:
+    description: "kamidana output text"
+    value: ${{ steps.kamidana.outputs.result }}
+
 runs:
   using: "composite"
   steps:
@@ -30,6 +35,7 @@ runs:
         pip install -r ${GITHUB_ACTION_PATH}/requirements.txt
     - name: kamidana
       shell: bash
+      id: kamidana
       env:
         INPUTS_TEMPLATE: ${{ inputs.template }}
         INPUTS_OUTPUT_FILE: ${{ inputs.output_file }}
