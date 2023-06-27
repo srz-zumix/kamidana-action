@@ -7,13 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: dump github.event
+      - name: dump github context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-          cat "${GITHUB_EVENT_PATH}" > event.json
+          echo "${GITHUB_CONTEXT}" | tee github_context.json
       - name: kamidana
         uses: ./
         with:
           template: testdata/test.j2
           output_file: test.txt
-          data_file: event.json
+          data_file: github_context.json
       - run: cat test.txt
