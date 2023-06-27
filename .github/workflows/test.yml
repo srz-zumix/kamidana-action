@@ -6,14 +6,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: dump github.event
         run: |
           cat "${GITHUB_EVENT_PATH}" > event.json
-      - uses: actions/checkout@v3
       - name: kamidana
         uses: ./
         with:
           template: testdata/test.j2
           output_file: test.txt
-          data_file: ./event.json
+          data_file: event.json
       - run: cat test.txt
