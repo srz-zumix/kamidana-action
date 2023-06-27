@@ -8,12 +8,12 @@ jobs:
     steps:
       - name: dump github.event
         run: |
-          cat "${GITHUB_EVENT_PATH}"
+          cat "${GITHUB_EVENT_PATH}" > event.json
       - uses: actions/checkout@v3
       - name: kamidana
         uses: ./
         with:
           template: testdata/test.j2
           output_file: test.txt
-          data_file: ${{ env.GITHUB_EVENT_PATH }}
+          data_file: event.json
       - run: cat test.txt
