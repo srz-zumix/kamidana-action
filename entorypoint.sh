@@ -3,10 +3,10 @@ set -euo pipefail
 
 declare -a KAMIDANA_OPTINOS
 
-if [ -n "#{INPUTS_DATA_FILE}" ]; then
+if [ -n "${INPUTS_DATA_FILE}" ]; then
     KAMIDANA_OPTINOS+=(--data "${INPUTS_DATA_FILE}")
 fi
-if [ -n "#{INPUTS_DATA_FORMAT}" ]; then
+if [ -n "${INPUTS_DATA_FORMAT}" ]; then
     KAMIDANA_OPTINOS+=(--data-format "${INPUTS_DATA_FORMAT}")
 fi
 
