@@ -5,7 +5,7 @@ inputs:
   template:
     required: true
   output_file:
-    required: true
+    required: false
   variables:
     required: false
   data_file:
