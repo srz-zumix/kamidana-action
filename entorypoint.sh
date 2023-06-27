@@ -14,6 +14,8 @@ OUTPUT_FILE=${INPUTS_OUTPUT_FILE:-kamidana-output.txt}
 
 echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" "${INPUTS_TEMPLATE}" | tee "${OUTPUT_FILE}"
 
-echo "result<<$EOF" >> "${GITHUB_OUTPUT}"
-cat "${OUTPUT_FILE}" >> "${GITHUB_OUTPUT}"
-echo "$EOF" >> "${GITHUB_OUTPUT}"
+{
+    echo 'result<<EOF'
+    cat "${OUTPUT_FILE}"
+    echo 'EOF'
+}  >> "${GITHUB_OUTPUT}"
