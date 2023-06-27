@@ -12,4 +12,4 @@ fi
 
 OUTPUT_FILE=${INPUTS_OUTPUT_FILE:-kamidana-output.txt}
 
-echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" | tee "${OUTPUT_FILE}"
+echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" "${INPUTS_TEMPLATE}" | tee "${OUTPUT_FILE}"
