@@ -1,0 +1,43 @@
+name: 'kamidana-action'
+description: 'jinja2 cli wrapper kamidana action.'
+author: 'srz_zumix'
+inputs:
+  template:
+    required: true
+  output_file:
+    required: true
+  variables:
+    required: false
+  data_file:
+    description: 'See "data_format" for supported formats'
+    required: false
+  data_format:
+    description: 'To be used with the "data_file" input, can be one of: yaml, json, toml'
+    required: false
+    default: json
+
+runs:
+  using: "composite"
+  steps:
+    - name: setup-python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION || '3.10' }}
+        cache: 'pip'
+    - name: pip install
+      shell: bash
+      run: |
+        pip install -r ${GITHUB_ACTION_PATH}/requirements.txt
+    - name: kamidana
+      shell: bash
+      env:
+        INPUTS_TEMPLATE: ${{ inputs.template }}
+        INPUTS_OUTPUT_FILE: ${{ inputs.output_file }}
+        INPUTS_VARIABLES: ${{ inputs.variables }}
+        INPUTS_DATA_FILE: ${{ inputs.data_file }}
+        INPUTS_DATA_FORMAT: ${{ inputs.data_format }}
+      run: "${GITHUB_ACTION_PATH}/entorypoint.sh"
+
+branding:
+  icon: 'sliders'
+  color: 'yellow'
