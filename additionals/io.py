@@ -8,7 +8,7 @@ import os
 @as_filter
 @contextfilter
 def basename(ctx, v):
-    return os.path.basename(v)
+    return os.path.basename(str(v))
 
 @as_filter
 @contextfilter

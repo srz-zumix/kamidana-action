@@ -15,6 +15,8 @@ github/job/runner [context](https://docs.github.com/en/actions/learn-github-acti
 {{ github.workflow }}
 {{ job.status }}
 {{ runner.name }} ({{ runner.os }}/{{ runner.arch }})
+{{ template_filename | basename }}
+{{ template_filename | read_from_file }}
 ```
 
 [default-example.yml](.github/workflows/default-example.yml)
@@ -45,8 +47,8 @@ jobs:
 [variables-and-data-file-example.j2](testdata/variables-and-data-file-example.j2)
 
 ```text
-{{ job }}
-{{ workflow }}
+{{ github.job }}
+{{ github.workflow }}
 {{ name }}
 {{ sample }}
 {{ replace_uses_to }}
