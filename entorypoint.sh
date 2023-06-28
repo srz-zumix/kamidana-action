@@ -34,6 +34,35 @@ if [ -n "${GITHUB_CONTEXT}" ]; then
     KAMIDANA_OPTINOS+=(--data "${RUNNER_TEMP}/github.json")
 fi
 
+if [ -n "${JOB_CONTEXT}" ]; then
+    {
+        echo '{ "job":'
+        echo "${JOB_CONTEXT}"
+        echo '}'
+    } > "${RUNNER_TEMP}/job.json"
+    KAMIDANA_OPTINOS+=(--data "${RUNNER_TEMP}/job.json")
+fi
+
+if [ -n "${VARS_CONTEXT}" ]; then
+    {
+        echo '{ "vars":'
+        echo "${VARS_CONTEXT}"
+        echo '}'
+    } > "${RUNNER_TEMP}/vars.json"
+    KAMIDANA_OPTINOS+=(--data "${RUNNER_TEMP}/vars.json")
+fi
+
+if [ -n "${RUNNER_CONTEXT}" ]; then
+    {
+        echo '{ "runner":'
+        echo "${RUNNER_CONTEXT}"
+        echo '}'
+    } > "${RUNNER_TEMP}/runner.json"
+    KAMIDANA_OPTINOS+=(--data "${RUNNER_TEMP}/runner.json")
+fi
+
+# do kamidana
+
 kamidana --list-info "${ADITIONALS_OPTIONS[@]}"
 
 echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" "${ADITIONALS_OPTIONS[@]}" "${INPUTS_TEMPLATE}" | tee "${OUTPUT_FILE}"

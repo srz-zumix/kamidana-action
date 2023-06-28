@@ -6,11 +6,15 @@
 
 ### GitHub Context Example
 
+github/job/vars/runner [context](https://docs.github.com/en/actions/learn-github-actions/contexts) is provided by default.
+
 [default-example.j2](testdata/default-example.j2)
 
 ```text
 {{ github.job }}
 {{ github.workflow }}
+{{ job.status }}
+{{ runner.name }} ({{ runner.os }}/{{ runner.arch }})
 ```
 
 [default-example.yml](.github/workflows/default-example.yml)
@@ -84,13 +88,26 @@ jobs:
 [additionals-example.j2](testdata/additionals-example.j2)
 
 ```text
-{{ "srz_zumix" | slack_user_id | slack_user_presence }}
+{{ "srz_zumix" | slack_user_id | slack_user_presence | suprised }}
 
 * rust-*
 {%- set compilers = wandbox_list() | wandbox_fnmatch_compilers("rust-*") %}
 {%- for compiler in compilers %}
   * {{ compiler.name }}
 {%- endfor %}
+```
+
+[suprised.py](testdata/suprised.py)
+
+```python
+from kamidana import (
+    as_filter,
+)
+
+
+@as_filter
+def surprised(v):
+    return "{}!!".format(v)
 ```
 
 [additionals-example.yml](.github/workflows/additionals-example.yml)
@@ -120,6 +137,7 @@ jobs:
           additonals: |
             yurumikuji.yurumikuji
             amaterasu.amaterasu
+            testdata/suprised.py
       - run: |
           echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
           diff output.txt test.txt
