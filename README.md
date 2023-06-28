@@ -36,7 +36,6 @@ jobs:
           diff output.txt test.txt
 ```
 
-
 ### Variable / Data file Example
 
 [variables-and-data-file-example.j2](testdata/variables-and-data-file-example.j2)
@@ -121,6 +120,68 @@ jobs:
           additonals: |
             yurumikuji.yurumikuji
             amaterasu.amaterasu
+      - run: |
+          echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
+          diff output.txt test.txt
+```
+
+### Extensions Example
+
+[extensions-example.j2](testdata/extensions-example.j2)
+
+```text
+{# with with. with_ extension is used. #}
+{%- with msg = "hello"%}
+{{msg}}
+{%- with msg = "world"%}
+  {{msg}}
+{%- endwith %}
+{{msg}}
+{%- endwith %}
+
+## counting
+{#- with break and continue. loopcontrolls extension is used. #}
+
+{%- for i in range(10) %}
+{%- if i % 3 == 0 %}{% continue %} {% endif %}
+{%- if i == 5 %}{% break %} {% endif %}
+- {{i}}
+{%- endfor %}
+
+## do
+
+{%- set xs = [] %}
+{%- for i in range(10) %}
+{%- do xs.append(i) %}
+{%- endfor %}
+{{xs}}
+```
+
+[extensions-example.yml](.github/workflows/extensions-example.yml)
+
+```yaml
+name: Extensions-Example
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: kamidana
+        id: kamidana
+        uses: srz-zumix/kamidana-action@main
+        with:
+          template: testdata/extensions-example.j2
+          output_file: test.txt
+          extensions: |
+            i18n
+            do
+            loopcontrols
+            with_
+            autoescape
+            debug
       - run: |
           echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
           diff output.txt test.txt

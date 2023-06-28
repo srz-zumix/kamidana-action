@@ -2,6 +2,7 @@
 set -euox pipefail
 
 declare -a KAMIDANA_OPTINOS
+declare -a ADITIONALS_OPTIONS
 
 if [ -n "${INPUTS_DATA_FILE}" ]; then
     KAMIDANA_OPTINOS+=(--data "${INPUTS_DATA_FILE}")
@@ -12,8 +13,13 @@ fi
 
 while IFS= read -r line
 do
-    KAMIDANA_OPTINOS+=(--additionals "${line}")
+    ADITIONALS_OPTIONS+=(--additionals "${line}")
 done < <(printf '%s' "${INPUTS_ADDITONALS}")
+
+while IFS= read -r line
+do
+    KAMIDANA_OPTINOS+=(--extension "${line}")
+done < <(printf '%s' "${INPUTS_EXTENSIONS}")
 
 OUTPUT_FILE=${INPUTS_OUTPUT_FILE:-kamidana-output.txt}
 
@@ -28,7 +34,9 @@ if [ -n "${GITHUB_CONTEXT}" ]; then
     KAMIDANA_OPTINOS+=(--data "${RUNNER_TEMP}/github.json")
 fi
 
-echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" "${INPUTS_TEMPLATE}" | tee "${OUTPUT_FILE}"
+kamidana --list-info "${ADITIONALS_OPTIONS[@]}"
+
+echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" "${ADITIONALS_OPTIONS[@]}" "${INPUTS_TEMPLATE}" | tee "${OUTPUT_FILE}"
 
 {
     echo 'result<<EOF'

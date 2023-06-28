@@ -21,6 +21,9 @@ inputs:
   requirements:
     description: 'Additionals modules requirements.txt string'
     require: false
+  extensions:
+    description: 'extension list, i18n,do,loopcontrols,with_,autoescape,debug'
+    required: false
   additonals:
     description: 'Additionals modules'
     required: false
@@ -48,9 +51,6 @@ runs:
           echo "${INPUTS_REQUIREMENTS}" > "${RUNNER_TEMP}/requirements.txt"
           pip install -r "${RUNNER_TEMP}/requirements.txt"
         fi
-    - name: list-info
-      shell: bash
-      run: kamidana --list-info
     - name: kamidana
       shell: bash
       id: kamidana
@@ -60,6 +60,7 @@ runs:
         INPUTS_VARIABLES: ${{ inputs.variables }}
         INPUTS_INPUT_FORMAT: ${{ inputs.input-format }}
         INPUTS_DATA_FILE: ${{ inputs.data_file }}
+        INPUTS_EXTENSIONS: ${{ inputs.extensions }}
         INPUTS_ADDITONALS: ${{ inputs.additonals }}
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: "${GITHUB_ACTION_PATH}/entorypoint.sh"

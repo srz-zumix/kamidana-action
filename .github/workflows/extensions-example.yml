@@ -1,0 +1,25 @@
+name: Extensions-Example
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: kamidana
+        id: kamidana
+        uses: ./
+        with:
+          template: testdata/extensions-example.j2
+          output_file: test.txt
+          extensions: |
+            i18n
+            do
+            loopcontrols
+            with_
+            autoescape
+            debug
+      - run: |
+          echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
+          diff output.txt test.txt
