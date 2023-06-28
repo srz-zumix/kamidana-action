@@ -17,6 +17,17 @@ done < <(printf '%s' "${INPUTS_ADDITONALS}")
 
 OUTPUT_FILE=${INPUTS_OUTPUT_FILE:-kamidana-output.txt}
 
+# github actions context
+
+if [ -n "${GITHUB_CONTEXT}" ]; then
+    {
+        echo '{ "github":'
+        echo "${GITHUB_CONTEXT}"
+        echo '}'
+    } > "${RUNNER_TEMP}/github.json"
+    KAMIDANA_OPTINOS+=(--data "${RUNNER_TEMP}/github.json")
+fi
+
 echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" "${INPUTS_TEMPLATE}" | tee "${OUTPUT_FILE}"
 
 {

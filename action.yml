@@ -48,6 +48,9 @@ runs:
           echo "${INPUTS_REQUIREMENTS}" > "${RUNNER_TEMP}/requirements.txt"
           pip install -r "${RUNNER_TEMP}/requirements.txt"
         fi
+    - name: list-info
+      shell: bash
+      run: kamidana --list-info
     - name: kamidana
       shell: bash
       id: kamidana
@@ -58,6 +61,7 @@ runs:
         INPUTS_INPUT_FORMAT: ${{ inputs.input-format }}
         INPUTS_DATA_FILE: ${{ inputs.data_file }}
         INPUTS_ADDITONALS: ${{ inputs.additonals }}
+        GITHUB_CONTEXT: ${{ toJson(github) }}
       run: "${GITHUB_ACTION_PATH}/entorypoint.sh"
 
 branding:

@@ -4,6 +4,39 @@
 
 ## Usage
 
+### GitHub Context Example
+
+[default-example.j2](testdata/default-example.j2)
+
+```text
+{{ github.job }}
+{{ github.workflow }}
+```
+
+[default-example.yml](.github/workflows/default-example.yml)
+
+```yaml
+name: Default-Example
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: kamidana
+        id: kamidana
+        uses: srz-zumix/kamidana-action@main
+        with:
+          template: testdata/default-example.j2
+          output_file: test.txt
+      - run: |
+          echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
+          diff output.txt test.txt
+```
+
+
 ### Variable / Data file Example
 
 [variables-and-data-file-example.j2](testdata/variables-and-data-file-example.j2)

@@ -20,8 +20,8 @@ jobs:
           output_file: test.txt
           data_file: github_context.json
           variables: |
-            { "sample": "test", "name": "srz-zumix" }
-          input-format: json
+            sample: test
+            name=srz: zumix
       - run: |
           echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
           diff output.txt test.txt
