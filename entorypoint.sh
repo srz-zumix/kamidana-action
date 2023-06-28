@@ -61,20 +61,26 @@ fi
 
 # do kamidana
 
-if [ "${INPUTS_DUMP_CONTEXT:-false}" = "true" ]; then
-    kamidana --list-info "${ADITIONALS_OPTIONS[@]}"
-    KAMIDANA_OPTINOS+=(--dump-context)
-fi
+do_kamidana() {
+    echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" "${ADITIONALS_OPTIONS[@]}" "${INPUTS_TEMPLATE:-$1}" "${@:2:($#-1)}"
+}
+
 if [ "${INPUTS_DEBUG:-false}" = "true" ]; then
     KAMIDANA_OPTINOS+=(--debug)
 fi
 
-echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" "${ADITIONALS_OPTIONS[@]}" "${INPUTS_TEMPLATE:-$1}" "${@:2:($#-1)}" | tee "${OUTPUT_FILE}"
+if [ "${INPUTS_DUMP_CONTEXT:-false}" = "true" ]; then
+    kamidana --list-info "${ADITIONALS_OPTIONS[@]}"
+    KAMIDANA_OPTINOS+=(--dump-context)
+    do_kamidana "$@"
+else
+    do_kamidana "$@" | tee "${OUTPUT_FILE}"
 
-if [ -n "${GITHUB_OUTPUT:-}" ]; then
-    {
-        echo 'result<<EOF'
-        cat "${OUTPUT_FILE}"
-        echo 'EOF'
-    }  >> "${GITHUB_OUTPUT}"
+    if [ -n "${GITHUB_OUTPUT:-}" ]; then
+        {
+            echo 'result<<EOF'
+            cat "${OUTPUT_FILE}"
+            echo 'EOF'
+        }  >> "${GITHUB_OUTPUT}"
+    fi
 fi
