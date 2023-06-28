@@ -22,7 +22,7 @@ jobs:
           additonals: |
             yurumikuji.yurumikuji
             amaterasu.amaterasu
-            testdata/suprised.py
+            ./testdata/suprised.py
       - run: |
           echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
           diff output.txt test.txt
