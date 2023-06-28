@@ -1,9 +1,6 @@
-name: Test
+name: Variable-And-Data-File-Example
 on:
   pull_request:
-
-env:
-  SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
 
 jobs:
   test:
@@ -19,16 +16,12 @@ jobs:
         id: kamidana
         uses: ./
         with:
-          template: testdata/test.j2
+          template: testdata/additionals-example.j2
           output_file: test.txt
           data_file: github_context.json
-          requirements: |
-            yurumikuji
-            amaterasu-j2
-          additonals: |
-            yurumikuji.yurumikuji
-            amaterasu.amaterasu
+          variables: |
+            sample=test
+            name=srz-zumix
       - run: |
           echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
           diff output.txt test.txt
-
