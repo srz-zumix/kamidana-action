@@ -45,7 +45,7 @@ runs:
       run: |
         pip install -r ${GITHUB_ACTION_PATH}/requirements.txt
         if [ -n "${INPUTS_REQUIREMENTS}" ]; then
-          echo "${INPUTS_REQUIREMENTS}" | pip install -r -
+          echo "${INPUTS_REQUIREMENTS}" | pip install -r
         fi
     - name: kamidana
       shell: bash
