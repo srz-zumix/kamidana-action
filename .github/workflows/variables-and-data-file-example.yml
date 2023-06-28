@@ -21,7 +21,7 @@ jobs:
           data_file: github_context.json
           variables: |
             sample: test
-            name=srz: zumix
+            name: srz-zumix
       - run: |
           echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
           diff output.txt test.txt
