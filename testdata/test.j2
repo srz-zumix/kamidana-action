@@ -1,3 +1,9 @@
 {{ job }}
 {{ workflow }}
 {{ "srz_zumix" | slack_user_id | slack_user_presence }}
+
+* rust-*
+{%- set compilers = wandbox_list() | wandbox_fnmatch_compilers("rust-*") %}
+{%- for compiler in compilers %}
+  * {{ compiler.name }}
+{%- endfor %}

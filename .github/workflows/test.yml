@@ -24,8 +24,10 @@ jobs:
           data_file: github_context.json
           requirements: |
             yurumikuji
+            amaterasu-j2
           additonals: |
             yurumikuji.yurumikuji
+            amaterasu.amaterasu
       - run: |
           echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
           diff output.txt test.txt
