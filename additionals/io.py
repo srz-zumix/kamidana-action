@@ -7,7 +7,7 @@ import os
 
 @as_filter
 @contextfilter
-def basename(v):
+def basename(ctx, v):
     return os.path.basename(v)
 
 @as_filter

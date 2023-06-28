@@ -7,19 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: dump github context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: |
-          echo "${GITHUB_CONTEXT}" | tee github_context.json
       - name: kamidana
         id: kamidana
         uses: ./
         with:
           template: testdata/variables-and-data-file-example.j2
           output_file: test.txt
-          data_file: github_context.json
-          dump_context: true
+          data_file: readme/replace-uses.json
+          variables: |
+            sample: test
+            name: srz-zumix
       - run: |
           echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
           diff output.txt test.txt

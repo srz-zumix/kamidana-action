@@ -1,0 +1,4 @@
+{
+    "replace_uses": "uses: ./",
+    "replace_uses_to": "uses: srz-zumix/kamidana-action@main"
+}

@@ -49,6 +49,7 @@ jobs:
 {{ workflow }}
 {{ name }}
 {{ sample }}
+{{ replace_uses_to }}
 ```
 
 [variables-and-data-file-example.yml](.github/workflows/variables-and-data-file-example.yml)
@@ -63,18 +64,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: dump github context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: |
-          echo "${GITHUB_CONTEXT}" | tee github_context.json
       - name: kamidana
         id: kamidana
         uses: srz-zumix/kamidana-action@main
         with:
           template: testdata/variables-and-data-file-example.j2
           output_file: test.txt
-          data_file: github_context.json
+          data_file: readme/replace-uses.json
           variables: |
             sample: test
             name: srz-zumix
