@@ -18,8 +18,8 @@ inputs:
   data_file:
     description: 'Input data file, supported format: yaml,json,toml'
     required: false
-  requireement:
-    description: 'Additionals modules requirement.txt string'
+  requirements:
+    description: 'Additionals modules requirements.txt string'
     require: false
   additonals:
     description: 'Additionals modules'
@@ -40,12 +40,12 @@ runs:
         cache: 'pip'
     - name: pip install
       env:
-        INPUTS_REQUIREEMENT: ${{ inputs.requireement }}
+        INPUTS_REQUIREMENTS: ${{ inputs.requirements }}
       shell: bash
       run: |
         pip install -r ${GITHUB_ACTION_PATH}/requirements.txt
-        if [ -n "${INPUTS_REQUIREEMENT}" ]; then
-          echo "${INPUTS_REQUIREEMENT}" | pip install -r -
+        if [ -n "${INPUTS_REQUIREMENTS}" ]; then
+          echo "${INPUTS_REQUIREMENTS}" | pip install -r -
         fi
     - name: kamidana
       shell: bash
