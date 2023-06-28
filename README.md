@@ -76,8 +76,8 @@ jobs:
           output_file: test.txt
           data_file: github_context.json
           variables: |
-            { "sample": "test", "name": "srz-zumix" }
-          input-format: json
+            sample: test
+            name: srz-zumix
       - run: |
           echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
           diff output.txt test.txt
@@ -88,7 +88,7 @@ jobs:
 [additionals-example.j2](testdata/additionals-example.j2)
 
 ```text
-{{ "srz_zumix" | slack_user_id | slack_user_presence | suprised }}
+{{ "srz_zumix" | slack_user_id | slack_user_presence | surprised }}
 
 * rust-*
 {%- set compilers = wandbox_list() | wandbox_fnmatch_compilers("rust-*") %}

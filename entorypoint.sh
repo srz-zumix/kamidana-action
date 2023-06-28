@@ -54,7 +54,10 @@ fi
 
 # do kamidana
 
-kamidana --list-info "${ADITIONALS_OPTIONS[@]}"
+if [ "${INPUTS_DUMP_CONTEXT}" = "true" ]; then
+    kamidana --list-info "${ADITIONALS_OPTIONS[@]}"
+    KAMIDANA_OPTINOS+=(--dump-context)
+fi
 
 echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" "${ADITIONALS_OPTIONS[@]}" "${INPUTS_TEMPLATE}" | tee "${OUTPUT_FILE}"
 

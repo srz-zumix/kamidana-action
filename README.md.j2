@@ -1,0 +1,89 @@
+# kamidana-action
+
+[kamidana][] is yet another jinja2's cli wrapper.
+
+## Usage
+
+### GitHub Context Example
+
+github/job/runner [context](https://docs.github.com/en/actions/learn-github-actions/contexts) is provided by default.
+
+{% with name="testdata/default-example.j2" -%}
+[{{ name | basename }}]({{ name }})
+
+```text
+{{ name | read_from_file | trim }}
+```
+{%- endwith %}
+
+{% with name=".github/workflows/default-example.yml" -%}
+[{{ name | basename }}]({{ name }})
+
+```yaml
+{{ name | read_from_file | replace(replace_uses, replace_uses_to)| trim }}
+```
+{%- endwith %}
+
+### Variable / Data file Example
+
+{% with name="testdata/variables-and-data-file-example.j2" -%}
+[{{ name | basename }}]({{ name }})
+
+```text
+{{ name | read_from_file | trim }}
+```
+{%- endwith %}
+
+{% with name=".github/workflows/variables-and-data-file-example.yml" -%}
+[{{ name | basename }}]({{ name }})
+
+```yaml
+{{ name | read_from_file | replace(replace_uses, replace_uses_to)| trim }}
+```
+{%- endwith %}
+
+### Additionals Example
+
+{% with name="testdata/additionals-example.j2" -%}
+[{{ name | basename }}]({{ name }})
+
+```text
+{{ name | read_from_file | trim }}
+```
+{%- endwith %}
+
+{% with name="testdata/surprised.py" -%}
+[{{ name | basename }}]({{ name }})
+
+```python
+{{ name | read_from_file | trim }}
+```
+{%- endwith %}
+
+{% with name=".github/workflows/additionals-example.yml" -%}
+[{{ name | basename }}]({{ name }})
+
+```yaml
+{{ name | read_from_file | replace(replace_uses, replace_uses_to)| trim }}
+```
+{%- endwith %}
+
+### Extensions Example
+
+{% with name="testdata/extensions-example.j2" -%}
+[{{ name | basename }}]({{ name }})
+
+```text
+{{ name | read_from_file | trim }}
+```
+{%- endwith %}
+
+{% with name=".github/workflows/extensions-example.yml" -%}
+[{{ name | basename }}]({{ name }})
+
+```yaml
+{{ name | read_from_file | replace(replace_uses, replace_uses_to)| trim }}
+```
+{%- endwith %}
+
+[kamidana]:https://github.com/podhmo/kamidana

@@ -1,0 +1,17 @@
+from kamidana import (
+    as_filter,
+)
+from jinja2.filters import contextfilter
+import os
+
+
+@as_filter
+@contextfilter
+def basename(v):
+    return os.path.basename(v)
+
+@as_filter
+@contextfilter
+def read_from_file(ctx, filename):
+    with open(filename) as rf:
+        return rf.read()

@@ -11,7 +11,7 @@ inputs:
   variables:
     description: 'Input data'
     required: false
-  input-format:
+  input_format:
     description: 'To be used with the "variables" input, can be one of: yaml,json,toml,csv,tsv,raw,env,md,markdown,spreadsheet'
     default: yaml
     required: false
@@ -26,6 +26,10 @@ inputs:
     required: false
   additonals:
     description: 'Additionals modules'
+    required: false
+  dump_context:
+    description: 'dumping loading data'
+    default: false
     required: false
 
 outputs:
@@ -58,10 +62,11 @@ runs:
         INPUTS_TEMPLATE: ${{ inputs.template }}
         INPUTS_OUTPUT_FILE: ${{ inputs.output_file }}
         INPUTS_VARIABLES: ${{ inputs.variables }}
-        INPUTS_INPUT_FORMAT: ${{ inputs.input-format }}
+        INPUTS_INPUT_FORMAT: ${{ inputs.input_format }}
         INPUTS_DATA_FILE: ${{ inputs.data_file }}
         INPUTS_EXTENSIONS: ${{ inputs.extensions }}
         INPUTS_ADDITONALS: ${{ inputs.additonals }}
+        INPUTS_DUMP_CONTEXT: ${{ inputs.dump_context }}
         GITHUB_CONTEXT: ${{ toJson(github) }}
         JOB_CONTEXT: ${{ toJson(job) }}
         RUNNER_CONTEXT: ${{ toJson(runner) }}
