@@ -16,10 +16,10 @@ do
     ADITIONALS_OPTIONS+=(--additionals "${line}")
 done < <(printf '%s' "${INPUTS_ADDITONALS}")
 
-# while IFS= read -r line
-# do
-#     KAMIDANA_OPTINOS+=(--extension "${line}")
-# done < <(printf '%s' "${INPUTS_EXTENSIONS}")
+while IFS= read -r line
+do
+    KAMIDANA_OPTINOS+=(--extension "${line}")
+done < <(printf '%s' "${INPUTS_EXTENSIONS}")
 
 OUTPUT_FILE=${INPUTS_OUTPUT_FILE:-kamidana-output.txt}
 
