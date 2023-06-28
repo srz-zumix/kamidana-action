@@ -1,4 +1,4 @@
-name: Default-Example
+name: Deump-Context
 on:
   pull_request:
 
@@ -13,6 +13,7 @@ jobs:
         with:
           template: testdata/default-example.j2
           output_file: test.txt
+          dump_context: true
       - run: |
           echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
           diff output.txt test.txt
