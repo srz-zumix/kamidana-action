@@ -15,6 +15,7 @@ github/job/runner [context](https://docs.github.com/en/actions/learn-github-acti
 {{ github.workflow }}
 {{ job.status }}
 {{ runner.name }} ({{ runner.os }}/{{ runner.arch }})
+{% set template_filename = github.workspace + "/testdata/default-example.j2" -%}
 {{ template_filename | basename }}
 {{ template_filename | read_from_file }}
 ```
@@ -38,7 +39,7 @@ jobs:
           template: testdata/default-example.j2
           output_file: test.txt
       - run: |
-          echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
+          echo '${{ steps.kamidana.outputs.text }}' | tee output.txt
           diff output.txt test.txt
 ```
 
@@ -77,7 +78,7 @@ jobs:
             sample: test
             name: srz-zumix
       - run: |
-          echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
+          echo '${{ steps.kamidana.outputs.text }}' | tee output.txt
           diff output.txt test.txt
 ```
 
@@ -137,7 +138,7 @@ jobs:
             amaterasu.amaterasu
             testdata/surprised.py
       - run: |
-          echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
+          echo '${{ steps.kamidana.outputs.text }}' | tee output.txt
           diff output.txt test.txt
 ```
 
@@ -199,7 +200,7 @@ jobs:
             autoescape
             debug
       - run: |
-          echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
+          echo '${{ steps.kamidana.outputs.text }}' | tee output.txt
           diff output.txt test.txt
 ```
 

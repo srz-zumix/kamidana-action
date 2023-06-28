@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
-set -euox pipefail
+set -euo pipefail
 
 declare -a KAMIDANA_OPTINOS
 declare -a ADITIONALS_OPTIONS
+
+if [ "${INPUTS_DEBUG:-false}" = "true" ]; then
+    KAMIDANA_OPTINOS+=(--debug)
+    set -x
+fi
 
 if [ -n "${INPUTS_DATA_FILE:-}" ]; then
     KAMIDANA_OPTINOS+=(--data "${INPUTS_DATA_FILE}")
@@ -64,10 +69,6 @@ fi
 do_kamidana() {
     echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" "${ADITIONALS_OPTIONS[@]}" "${INPUTS_TEMPLATE:-$1}" "${@:2:($#-1)}"
 }
-
-if [ "${INPUTS_DEBUG:-false}" = "true" ]; then
-    KAMIDANA_OPTINOS+=(--debug)
-fi
 
 if [ "${INPUTS_DUMP_CONTEXT:-false}" = "true" ]; then
     kamidana --list-info "${ADITIONALS_OPTIONS[@]}"

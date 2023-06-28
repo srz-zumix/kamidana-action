@@ -18,5 +18,5 @@ jobs:
             sample: test
             name: srz-zumix
       - run: |
-          echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
+          echo '${{ steps.kamidana.outputs.text }}' | tee output.txt
           diff output.txt test.txt
