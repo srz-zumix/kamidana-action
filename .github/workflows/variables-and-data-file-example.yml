@@ -1,4 +1,4 @@
-name: Variable-And-Data-File-Example
+name: Variables-And-Data-File-Example
 on:
   pull_request:
 
@@ -16,7 +16,7 @@ jobs:
         id: kamidana
         uses: ./
         with:
-          template: testdata/variable-and-data-file-example.j2
+          template: testdata/variables-and-data-file-example.j2
           output_file: test.txt
           data_file: github_context.json
           variables: |

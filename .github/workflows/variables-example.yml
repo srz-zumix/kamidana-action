@@ -1,0 +1,21 @@
+name: Variables-Example
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: kamidana
+        id: kamidana
+        uses: ./
+        with:
+          template: testdata/variables-example.j2
+          output_file: test.txt
+          variables: |
+            sample=test
+            name=srz-zumix
+      - run: |
+          echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
+          diff output.txt test.txt
