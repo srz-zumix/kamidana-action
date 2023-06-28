@@ -16,10 +16,10 @@ do
     ADITIONALS_OPTIONS+=(--additionals "${line}")
 done < <(printf '%s' "${INPUTS_ADDITONALS}")
 
-while IFS= read -r line
-do
-    KAMIDANA_OPTINOS+=(--extension "${line}")
-done < <(printf '%s' "${INPUTS_EXTENSIONS}")
+# while IFS= read -r line
+# do
+#     KAMIDANA_OPTINOS+=(--extension "${line}")
+# done < <(printf '%s' "${INPUTS_EXTENSIONS}")
 
 OUTPUT_FILE=${INPUTS_OUTPUT_FILE:-kamidana-output.txt}
 
@@ -57,6 +57,9 @@ fi
 if [ "${INPUTS_DUMP_CONTEXT}" = "true" ]; then
     kamidana --list-info "${ADITIONALS_OPTIONS[@]}"
     KAMIDANA_OPTINOS+=(--dump-context)
+fi
+if [ "${INPUTS_DEBUG}" = "true" ]; then
+    KAMIDANA_OPTINOS+=(--debug)
 fi
 
 echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" "${ADITIONALS_OPTIONS[@]}" "${INPUTS_TEMPLATE}" | tee "${OUTPUT_FILE}"

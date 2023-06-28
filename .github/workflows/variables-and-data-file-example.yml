@@ -19,6 +19,7 @@ jobs:
           template: testdata/variables-and-data-file-example.j2
           output_file: test.txt
           data_file: github_context.json
+          debug: true
           variables: |
             sample: test
             name: srz-zumix

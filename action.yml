@@ -31,6 +31,10 @@ inputs:
     description: 'dumping loading data'
     default: false
     required: false
+  debug:
+    description: 'enable kamidana debug'
+    default: false
+    required: false
 
 outputs:
   text:
@@ -67,6 +71,7 @@ runs:
         INPUTS_EXTENSIONS: ${{ inputs.extensions }}
         INPUTS_ADDITONALS: ${{ inputs.additonals }}
         INPUTS_DUMP_CONTEXT: ${{ inputs.dump_context }}
+        INPUTS_DEBUG: ${{ inputs.debug }}
         GITHUB_CONTEXT: ${{ toJson(github) }}
         JOB_CONTEXT: ${{ toJson(job) }}
         RUNNER_CONTEXT: ${{ toJson(runner) }}
