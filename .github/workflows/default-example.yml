@@ -14,5 +14,5 @@ jobs:
           template: testdata/default-example.j2
           output_file: test.txt
       - run: |
-          echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
+          echo '${{ steps.kamidana.outputs.text }}' | tee output.txt
           diff output.txt test.txt
