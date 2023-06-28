@@ -97,7 +97,7 @@ jobs:
 {%- endfor %}
 ```
 
-[suprised.py](testdata/suprised.py)
+[surprised.py](testdata/surprised.py)
 
 ```python
 from kamidana import (
@@ -137,7 +137,7 @@ jobs:
           additonals: |
             yurumikuji.yurumikuji
             amaterasu.amaterasu
-            testdata/suprised.py
+            testdata/surprised.py
       - run: |
           echo "${{ steps.kamidana.outputs.text }}" | tee output.txt
           diff output.txt test.txt
