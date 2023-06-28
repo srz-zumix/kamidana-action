@@ -11,7 +11,7 @@ inputs:
   variables:
     description: 'Input data'
     required: false
-  format:
+  input-format:
     description: 'To be used with the "variables" input, can be one of: yaml,json,toml,csv,tsv,raw,env,md,markdown,spreadsheet'
     default: env
     required: false
@@ -55,7 +55,7 @@ runs:
         INPUTS_TEMPLATE: ${{ inputs.template }}
         INPUTS_OUTPUT_FILE: ${{ inputs.output_file }}
         INPUTS_VARIABLES: ${{ inputs.variables }}
-        INPUTS_FORMAT: ${{ inputs.format }}
+        INPUTS_INPUT_FORMAT: ${{ inputs.input-format }}
         INPUTS_DATA_FILE: ${{ inputs.data_file }}
         INPUTS_ADDITONALS: ${{ inputs.additonals }}
       run: "${GITHUB_ACTION_PATH}/entorypoint.sh"

@@ -6,8 +6,8 @@ declare -a KAMIDANA_OPTINOS
 if [ -n "${INPUTS_DATA_FILE}" ]; then
     KAMIDANA_OPTINOS+=(--data "${INPUTS_DATA_FILE}")
 fi
-if [ -n "${INPUTS_VARIABLES}" ] && [ -n "${INPUTS_FORMAT}" ]; then
-    KAMIDANA_OPTINOS+=(--input-format "${INPUTS_FORMAT}")
+if [ -n "${INPUTS_VARIABLES}" ] && [ -n "${INPUTS_INPUT_FORMAT}" ]; then
+    KAMIDANA_OPTINOS+=(--input-format "${INPUTS_INPUT_FORMAT}")
 fi
 
 while IFS= read -r line
