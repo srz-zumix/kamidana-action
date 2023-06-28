@@ -11,6 +11,12 @@ if [ -n "${INPUTS_VARIABLES}" ] && [ -n "${INPUTS_INPUT_FORMAT}" ]; then
     KAMIDANA_OPTINOS+=(--input-format "${INPUTS_INPUT_FORMAT}")
 fi
 
+# default additionals
+for file in `find ${GITHUB_ACTION_PATH}/additionals -name '*.py' -not -name '__init__.py'`; do
+    ADITIONALS_OPTIONS+=(--additionals "${file}")
+done
+
+# inputs additionals
 while IFS= read -r line
 do
     ADITIONALS_OPTIONS+=(--additionals "${line}")

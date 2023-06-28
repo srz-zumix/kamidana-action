@@ -2,3 +2,5 @@
 {{ github.workflow }}
 {{ job.status }}
 {{ runner.name }} ({{ runner.os }}/{{ runner.arch }})
+{{ template_filename | basename }}
+{{ template_filename | read_from_file }}
