@@ -3,17 +3,26 @@ description: 'jinja2 cli wrapper kamidana action.'
 author: 'srz_zumix'
 inputs:
   template:
+    description: 'Jinja2 template file'
     required: true
   output_file:
+    description: 'Output file path'
     required: false
   variables:
+    description: 'Input data'
     required: false
   format:
     description: 'To be used with the "variables" input, can be one of: yaml,json,toml,csv,tsv,raw,env,md,markdown,spreadsheet'
-    required: false
     default: env
+    required: false
   data_file:
-    description: 'support yaml, json, toml'
+    description: 'Input data file, supported format: yaml,json,toml'
+    required: false
+  requireement:
+    description: 'Additionals modules requirement.txt string'
+    require: false
+  additonals:
+    description: 'Additionals modules'
     required: false
 
 outputs:
@@ -30,9 +39,14 @@ runs:
         python-version: ${{ env.PYTHON_VERSION || '3.10' }}
         cache: 'pip'
     - name: pip install
+      env:
+        INPUTS_REQUIREEMENT: ${{ inputs.requireement }}
       shell: bash
       run: |
         pip install -r ${GITHUB_ACTION_PATH}/requirements.txt
+        if [ -n "${INPUTS_REQUIREEMENT}" ]; then
+          echo "${INPUTS_REQUIREEMENT}" | pip install -r -
+        fi
     - name: kamidana
       shell: bash
       id: kamidana
@@ -42,6 +56,7 @@ runs:
         INPUTS_VARIABLES: ${{ inputs.variables }}
         INPUTS_FORMAT: ${{ inputs.format }}
         INPUTS_DATA_FILE: ${{ inputs.data_file }}
+        INPUTS_ADDITONALS: ${{ inputs.additonals }}
       run: "${GITHUB_ACTION_PATH}/entorypoint.sh"
 
 branding:

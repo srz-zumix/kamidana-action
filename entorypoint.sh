@@ -10,6 +10,11 @@ if [ -n "${INPUTS_VARIABLES}" ] && [ -n "${INPUTS_FORMAT}" ]; then
     KAMIDANA_OPTINOS+=(--input-format "${INPUTS_FORMAT}")
 fi
 
+while IFS= read -r line
+do
+    KAMIDANA_OPTINOS+=(--additionals "${line}")
+done < <(printf '%s' "${INPUTS_ADDITONALS}")
+
 OUTPUT_FILE=${INPUTS_OUTPUT_FILE:-kamidana-output.txt}
 
 echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" "${INPUTS_TEMPLATE}" | tee "${OUTPUT_FILE}"
