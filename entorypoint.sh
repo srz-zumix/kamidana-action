@@ -43,15 +43,6 @@ if [ -n "${JOB_CONTEXT}" ]; then
     KAMIDANA_OPTINOS+=(--data "${RUNNER_TEMP}/job.json")
 fi
 
-if [ -n "${VARS_CONTEXT}" ]; then
-    {
-        echo '{ "vars":'
-        echo "${VARS_CONTEXT}"
-        echo '}'
-    } > "${RUNNER_TEMP}/vars.json"
-    KAMIDANA_OPTINOS+=(--data "${RUNNER_TEMP}/vars.json")
-fi
-
 if [ -n "${RUNNER_CONTEXT}" ]; then
     {
         echo '{ "runner":'

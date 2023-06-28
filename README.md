@@ -6,7 +6,7 @@
 
 ### GitHub Context Example
 
-github/job/vars/runner [context](https://docs.github.com/en/actions/learn-github-actions/contexts) is provided by default.
+github/job/runner [context](https://docs.github.com/en/actions/learn-github-actions/contexts) is provided by default.
 
 [default-example.j2](testdata/default-example.j2)
 

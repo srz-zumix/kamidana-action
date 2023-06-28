@@ -64,7 +64,6 @@ runs:
         INPUTS_ADDITONALS: ${{ inputs.additonals }}
         GITHUB_CONTEXT: ${{ toJson(github) }}
         JOB_CONTEXT: ${{ toJson(job) }}
-        VARS_CONTEXT: ${{ toJson(vars) }}
         RUNNER_CONTEXT: ${{ toJson(runner) }}
       run: "${GITHUB_ACTION_PATH}/entorypoint.sh"
 
