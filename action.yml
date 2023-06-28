@@ -13,7 +13,7 @@ inputs:
     required: false
   input-format:
     description: 'To be used with the "variables" input, can be one of: yaml,json,toml,csv,tsv,raw,env,md,markdown,spreadsheet'
-    default: env
+    default: yaml
     required: false
   data_file:
     description: 'Input data file, supported format: yaml,json,toml'

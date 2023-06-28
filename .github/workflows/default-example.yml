@@ -3,7 +3,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  default-example:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

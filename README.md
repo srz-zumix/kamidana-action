@@ -21,7 +21,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  default-example:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -55,7 +55,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  variables-and-data-file-example:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -104,7 +104,7 @@ env:
   SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
 
 jobs:
-  test:
+  additionals-example:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -165,7 +165,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  extensions-example:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
