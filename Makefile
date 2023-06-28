@@ -1,7 +1,7 @@
 readme: README.md
 
-README.md: readme/README.md.j2 Makefile additionals/io.py
-	kamidana -d readme/replace-uses.json $< -a additionals/io.py > $@
+README.md: readme/README.md.j2 Makefile additionals/*.py
+	./entorypoint.sh $< -d readme/replace-uses.json > $@
 
 setup:
 	pip install -r requirements.txt
