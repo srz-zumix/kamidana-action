@@ -16,7 +16,7 @@ jobs:
         id: kamidana
         uses: ./
         with:
-          template: testdata/additionals-example.j2
+          template: testdata/variable-and-data-file-example.j2
           output_file: test.txt
           data_file: github_context.json
           variables: |
