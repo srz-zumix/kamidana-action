@@ -17,6 +17,10 @@ if [ -n "${INPUTS_VARIABLES:-}" ] && [ -n "${INPUTS_INPUT_FORMAT:-}" ]; then
 fi
 
 # default additionals
+ADITIONALS_OPTIONS+=(--additionals "kamidana.additionals.env")
+ADITIONALS_OPTIONS+=(--additionals "kamidana.additionals.naming")
+ADITIONALS_OPTIONS+=(--additionals "kamidana.additionals.reader")
+
 while IFS= read -r line
 do
     ADITIONALS_OPTIONS+=(--additionals "${line}")

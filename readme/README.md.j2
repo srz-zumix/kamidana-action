@@ -12,7 +12,7 @@ github/job/runner [context](https://docs.github.com/en/actions/learn-github-acti
 [{{ name | basename }}]({{ name }})
 
 ```text
-{{ name | read_from_file | trim }}
+{{ name | read_from_file(relative_self=False) | trim }}
 ```
 {%- endwith %}
 
@@ -20,7 +20,7 @@ github/job/runner [context](https://docs.github.com/en/actions/learn-github-acti
 [{{ name | basename }}]({{ name }})
 
 ```yaml
-{{ name | read_from_file | replace(replace_uses, replace_uses_to)| trim }}
+{{ name | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
 ```
 {%- endwith %}
 
@@ -30,7 +30,7 @@ github/job/runner [context](https://docs.github.com/en/actions/learn-github-acti
 [{{ name | basename }}]({{ name }})
 
 ```text
-{{ name | read_from_file | trim }}
+{{ name | read_from_file(relative_self=False) | trim }}
 ```
 {%- endwith %}
 
@@ -38,7 +38,7 @@ github/job/runner [context](https://docs.github.com/en/actions/learn-github-acti
 [{{ name | basename }}]({{ name }})
 
 ```yaml
-{{ name | read_from_file | replace(replace_uses, replace_uses_to)| trim }}
+{{ name | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
 ```
 {%- endwith %}
 
@@ -48,7 +48,7 @@ github/job/runner [context](https://docs.github.com/en/actions/learn-github-acti
 [{{ name | basename }}]({{ name }})
 
 ```text
-{{ name | read_from_file | trim }}
+{{ name | read_from_file(relative_self=False) | trim }}
 ```
 {%- endwith %}
 
@@ -56,7 +56,7 @@ github/job/runner [context](https://docs.github.com/en/actions/learn-github-acti
 [{{ name | basename }}]({{ name }})
 
 ```python
-{{ name | read_from_file | trim }}
+{{ name | read_from_file(relative_self=False) | trim }}
 ```
 {%- endwith %}
 
@@ -64,7 +64,7 @@ github/job/runner [context](https://docs.github.com/en/actions/learn-github-acti
 [{{ name | basename }}]({{ name }})
 
 ```yaml
-{{ name | read_from_file | replace(replace_uses, replace_uses_to)| trim }}
+{{ name | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
 ```
 {%- endwith %}
 
@@ -74,7 +74,7 @@ github/job/runner [context](https://docs.github.com/en/actions/learn-github-acti
 [{{ name | basename }}]({{ name }})
 
 ```text
-{{ name | read_from_file | trim }}
+{{ name | read_from_file(relative_self=False) | trim }}
 ```
 {%- endwith %}
 
@@ -82,7 +82,7 @@ github/job/runner [context](https://docs.github.com/en/actions/learn-github-acti
 [{{ name | basename }}]({{ name }})
 
 ```yaml
-{{ name | read_from_file | replace(replace_uses, replace_uses_to)| trim }}
+{{ name | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
 ```
 {%- endwith %}
 

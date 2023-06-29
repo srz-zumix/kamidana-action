@@ -12,6 +12,5 @@ def basename(ctx, v):
 
 @as_filter
 @contextfilter
-def read_from_file(ctx, filename):
-    with open(filename) as rf:
-        return rf.read()
+def dirname(ctx, v):
+    return os.path.dirname(str(v))
