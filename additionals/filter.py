@@ -24,4 +24,4 @@ def b64encode(ctx, v, *, encoding='utf-8'):
 @as_filter
 @contextfilter
 def b64decode(ctx, v, *, encoding='utf-8'):
-    return base64.b64decode(v).encode(encoding)
+    return base64.b64decode(v).decode(encoding)
