@@ -1,0 +1,104 @@
+# kamidana-action
+
+[kamidana][] is yet another jinja2's cli wrapper.
+
+## Features
+
+* github/job/runner [context](https://docs.github.com/en/actions/learn-github-actions/contexts) is provided by default
+* [kamidana][] additionals
+  * [env](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/env.py)
+  * [naming](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/naming.py)
+  * [reader](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/reader.py)
+* kamidana-action additonals
+  * [io](additionals/io.py)
+    * basename
+    * dirname
+  * [filter](additionals/filter.py)
+    * ternary
+    * b64encode
+    * b64decode
+* user defined additionals
+
+## Usage
+
+### GitHub Context Example
+
+{% with name="testdata/default-example.j2" -%}
+[{{ name | basename }}]({{ name }})
+
+```text
+{{ name | read_from_file(relative_self=False) | trim }}
+```
+{%- endwith %}
+
+{% with name=".github/workflows/default-example.yml" -%}
+[{{ name | basename }}]({{ name }})
+
+```yaml
+{{ name | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
+```
+{%- endwith %}
+
+### Variable / Data file Example
+
+{% with name="testdata/variables-and-data-file-example.j2" -%}
+[{{ name | basename }}]({{ name }})
+
+```text
+{{ name | read_from_file(relative_self=False) | trim }}
+```
+{%- endwith %}
+
+{% with name=".github/workflows/variables-and-data-file-example.yml" -%}
+[{{ name | basename }}]({{ name }})
+
+```yaml
+{{ name | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
+```
+{%- endwith %}
+
+### Additionals Example
+
+{% with name="testdata/additionals-example.j2" -%}
+[{{ name | basename }}]({{ name }})
+
+```text
+{{ name | read_from_file(relative_self=False) | trim }}
+```
+{%- endwith %}
+
+{% with name="testdata/surprised.py" -%}
+[{{ name | basename }}]({{ name }})
+
+```python
+{{ name | read_from_file(relative_self=False) | trim }}
+```
+{%- endwith %}
+
+{% with name=".github/workflows/additionals-example.yml" -%}
+[{{ name | basename }}]({{ name }})
+
+```yaml
+{{ name | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
+```
+{%- endwith %}
+
+### Extensions Example
+
+{% with name="testdata/extensions-example.j2" -%}
+[{{ name | basename }}]({{ name }})
+
+```text
+{{ name | read_from_file(relative_self=False) | trim }}
+```
+{%- endwith %}
+
+{% with name=".github/workflows/extensions-example.yml" -%}
+[{{ name | basename }}]({{ name }})
+
+```yaml
+{{ name | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
+```
+{%- endwith %}
+
+[kamidana]:https://github.com/podhmo/kamidana

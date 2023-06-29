@@ -1,0 +1,10 @@
+{{ github.job }}
+{{ github.workflow }}
+{{ job.status }}
+{{ github.ref_protected | ternary('protected', '') }}
+{{ github.ref_name | b64encode }}
+{{ github.ref | b64encode | b64decode }}
+{{ runner.name }} ({{ runner.os }}/{{ runner.arch }})
+{% set template_filename = github.workspace + "/testdata/default-example.j2" -%}
+{{ template_filename | basename }}
+{{ template_filename | read_from_file }}
