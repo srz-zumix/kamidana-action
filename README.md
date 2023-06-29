@@ -57,7 +57,9 @@ jobs:
           template: testdata/default-example.j2
           output_file: test.txt
       - run: |
-          echo '${{ steps.kamidana.outputs.text }}' | tee output.txt
+          cat << EOS | tee output.txt
+          ${{ steps.kamidana.outputs.text }}
+          EOS
           diff output.txt test.txt
 ```
 
@@ -96,7 +98,9 @@ jobs:
             sample: test
             name: srz-zumix
       - run: |
-          echo '${{ steps.kamidana.outputs.text }}' | tee output.txt
+          cat << EOS | tee output.txt
+          ${{ steps.kamidana.outputs.text }}
+          EOS
           diff output.txt test.txt
 ```
 
@@ -156,7 +160,9 @@ jobs:
             amaterasu.amaterasu
             testdata/surprised.py
       - run: |
-          echo '${{ steps.kamidana.outputs.text }}' | tee output.txt
+          cat << EOS | tee output.txt
+          ${{ steps.kamidana.outputs.text }}
+          EOS
           diff output.txt test.txt
 ```
 
@@ -218,7 +224,9 @@ jobs:
             autoescape
             debug
       - run: |
-          echo '${{ steps.kamidana.outputs.text }}' | tee output.txt
+          cat << EOS | tee output.txt
+          ${{ steps.kamidana.outputs.text }}
+          EOS
           diff output.txt test.txt
 ```
 
