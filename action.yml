@@ -48,8 +48,8 @@ runs:
       uses: actions/setup-python@v4
       with:
         python-version: ${{ env.PYTHON_VERSION || '3.10' }}
-        cache: 'pip'
-        cache-dependency-path: ${{ github.action_path  }}/requirements.txt
+        # cache: 'pip'
+        # cache-dependency-path: ${{ github.action_path  }}/requirements.txt
     - name: pip install
       env:
         INPUTS_REQUIREMENTS: ${{ inputs.requirements }}
