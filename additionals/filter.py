@@ -18,10 +18,10 @@ def ternary(ctx, v, true_val, false_val, null_val=None):
 @as_filter
 @contextfilter
 def b64encode(ctx, v, *, encoding='utf-8'):
-    return base64.encode(v.encode(encoding))
+    return base64.b64encode(v.encode(encoding))
 
 
 @as_filter
 @contextfilter
 def b64decode(ctx, v, *, encoding='utf-8'):
-    return base64.decode(v.encode(encoding))
+    return base64.b64decode(v.encode(encoding))

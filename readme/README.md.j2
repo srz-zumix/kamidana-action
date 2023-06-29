@@ -2,11 +2,26 @@
 
 [kamidana][] is yet another jinja2's cli wrapper.
 
+## Features
+
+* github/job/runner [context](https://docs.github.com/en/actions/learn-github-actions/contexts) is provided by default
+* [kamidana][] additionals
+  * [env](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/env.py)
+  * [naming](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/naming.py)
+  * [reader](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/reader.py)
+* kamidana-action additonals
+  * [io](additionals/io.py)
+    * basename
+    * dirname
+  * [filter](additionals/filter.py)
+    * ternary
+    * b64encode
+    * b64decode
+* user defined additionals
+
 ## Usage
 
 ### GitHub Context Example
-
-github/job/runner [context](https://docs.github.com/en/actions/learn-github-actions/contexts) is provided by default.
 
 {% with name="testdata/default-example.j2" -%}
 [{{ name | basename }}]({{ name }})

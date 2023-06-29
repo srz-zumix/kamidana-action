@@ -2,11 +2,26 @@
 
 [kamidana][] is yet another jinja2's cli wrapper.
 
+## Features
+
+* github/job/runner [context](https://docs.github.com/en/actions/learn-github-actions/contexts) is provided by default
+* [kamidana][] additionals
+  * [env](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/env.py)
+  * [naming](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/naming.py)
+  * [reader](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/reader.py)
+* kamidana-action additonals
+  * [io](additionals/io.py)
+    * basename
+    * dirname
+  * [filter](additionals/filter.py)
+    * ternary
+    * b64encode
+    * b64decode
+* user defined additionals
+
 ## Usage
 
 ### GitHub Context Example
-
-github/job/runner [context](https://docs.github.com/en/actions/learn-github-actions/contexts) is provided by default.
 
 [default-example.j2](testdata/default-example.j2)
 
@@ -14,6 +29,9 @@ github/job/runner [context](https://docs.github.com/en/actions/learn-github-acti
 {{ github.job }}
 {{ github.workflow }}
 {{ job.status }}
+{{ github.ref_protected | ternary('protected', '') }}
+{{ github.ref_name | b64encode }}
+{{ github.ref | b64encode | b64decode }}
 {{ runner.name }} ({{ runner.os }}/{{ runner.arch }})
 {% set template_filename = github.workspace + "/testdata/default-example.j2" -%}
 {{ template_filename | basename }}
