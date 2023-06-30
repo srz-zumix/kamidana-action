@@ -79,7 +79,11 @@ if [ "${INPUTS_DUMP_CONTEXT:-false}" = "true" ]; then
     KAMIDANA_OPTINOS+=(--dump-context)
     do_kamidana "$@"
 else
-    do_kamidana "$@" | tee "${OUTPUT_FILE}"
+    if [ "${INPUTS_TEE:-true}" == 'true' ]; then
+        do_kamidana "$@" | tee "${OUTPUT_FILE}"
+    else
+        do_kamidana "$@" > "${OUTPUT_FILE}"
+    fi
 
     if [ -n "${GITHUB_OUTPUT:-}" ]; then
         {

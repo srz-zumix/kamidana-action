@@ -13,6 +13,7 @@ jobs:
         with:
           template: testdata/default-example.j2
           output_file: test.txt
+          tee: true
       - run: |
           cat << EOS | tee output.txt
           ${{ steps.kamidana.outputs.text }}

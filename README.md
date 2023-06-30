@@ -56,6 +56,7 @@ jobs:
         with:
           template: testdata/default-example.j2
           output_file: test.txt
+          tee: true
       - run: |
           cat << EOS | tee output.txt
           ${{ steps.kamidana.outputs.text }}
@@ -93,6 +94,7 @@ jobs:
         with:
           template: testdata/variables-and-data-file-example.j2
           output_file: test.txt
+          tee: true
           data_file: readme/replace-uses.json
           variables: |
             sample: test
@@ -152,6 +154,7 @@ jobs:
         with:
           template: testdata/additionals-example.j2
           output_file: test.txt
+          tee: true
           requirements: |
             yurumikuji
             amaterasu-j2
@@ -216,6 +219,7 @@ jobs:
         with:
           template: testdata/extensions-example.j2
           output_file: test.txt
+          tee: true
           extensions: |
             i18n
             do

@@ -13,6 +13,7 @@ jobs:
         with:
           template: testdata/extensions-example.j2
           output_file: test.txt
+          tee: true
           extensions: |
             i18n
             do
