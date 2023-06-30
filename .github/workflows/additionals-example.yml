@@ -16,6 +16,7 @@ jobs:
         with:
           template: testdata/additionals-example.j2
           output_file: test.txt
+          tee: true
           requirements: |
             yurumikuji
             amaterasu-j2
