@@ -2,6 +2,7 @@
 {{ github.workflow }}
 {{ job.status }}
 {{ github.ref_protected | ternary('protected', '') }}
+{{ githu.ref | regex_replace('refs/.*/(.*)', '\1') }}
 {{ github.ref_name | b64encode }}
 {{ github.ref | b64encode | b64decode }}
 {{ runner.name }} ({{ runner.os }}/{{ runner.arch }})

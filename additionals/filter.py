@@ -3,6 +3,13 @@ from kamidana import (
 )
 from jinja2.filters import contextfilter
 import base64
+import re
+
+
+@as_filter
+@contextfilter
+def regex_replace(ctx, v, pattern, repl, count=0, flags=0):
+    return re.sub(pattern, repl, v, count, flags)
 
 
 @as_filter
