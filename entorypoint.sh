@@ -9,9 +9,12 @@ if [ "${INPUTS_DEBUG:-false}" = "true" ]; then
     set -x
 fi
 
-if [ -n "${INPUTS_DATA_FILE:-}" ]; then
-    KAMIDANA_OPTINOS+=(--data "${INPUTS_DATA_FILE}")
-fi
+# inputs data
+while IFS= read -r line
+do
+    KAMIDANA_OPTINOS+=(--data "${line}")
+done < <(printf '%s' "${INPUTS_DATA_FILES:-}")
+
 if [ -n "${INPUTS_VARIABLES:-}" ] && [ -n "${INPUTS_INPUT_FORMAT:-}" ]; then
     KAMIDANA_OPTINOS+=(--input-format "${INPUTS_INPUT_FORMAT}")
 fi
