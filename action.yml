@@ -72,7 +72,7 @@ runs:
         INPUTS_OUTPUT_FILE: ${{ inputs.output_file }}
         INPUTS_VARIABLES: ${{ inputs.variables }}
         INPUTS_INPUT_FORMAT: ${{ inputs.input_format }}
-        INPUTS_DATA_FILES: ${{ inputs.data_file }}
+        INPUTS_DATA_FILES: ${{ inputs.data_files }}
         INPUTS_EXTENSIONS: ${{ inputs.extensions }}
         INPUTS_ADDITONALS: ${{ inputs.additonals }}
         INPUTS_TEE: ${{ inputs.tee }}
