@@ -95,7 +95,7 @@ jobs:
           template: testdata/variables-and-data-file-example.j2
           output_file: test.txt
           tee: true
-          data_file: readme/replace-uses.json
+          data_files: readme/replace-uses.json
           variables: |
             sample: test
             name: srz-zumix
