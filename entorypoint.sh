@@ -10,7 +10,7 @@ if [ "${INPUTS_DEBUG:-false}" = "true" ]; then
 fi
 
 # inputs data
-while IFS= read -r line
+while IFS= read -r line || [ "$line" ]
 do
     KAMIDANA_OPTINOS+=(--data "${line}")
 done < <(printf '%s' "${INPUTS_DATA_FILES:-}")
@@ -24,18 +24,18 @@ ADITIONALS_OPTIONS+=(--additionals "kamidana.additionals.env")
 ADITIONALS_OPTIONS+=(--additionals "kamidana.additionals.naming")
 ADITIONALS_OPTIONS+=(--additionals "kamidana.additionals.reader")
 
-while IFS= read -r line
+while IFS= read -r line || [ "$line" ]
 do
     ADITIONALS_OPTIONS+=(--additionals "${line}")
 done < <(find "${GITHUB_ACTION_PATH:-.}/additionals" -name '*.py' -not -name '__init__.py')
 
 # inputs additionals
-while IFS= read -r line
+while IFS= read -r line || [ "$line" ]
 do
     ADITIONALS_OPTIONS+=(--additionals "${line}")
 done < <(printf '%s' "${INPUTS_ADDITONALS:-}")
 
-while IFS= read -r line
+while IFS= read -r line || [ "$line" ]
 do
     KAMIDANA_OPTINOS+=(--extension "${line}")
 done < <(printf '%s' "${INPUTS_EXTENSIONS:-}")
