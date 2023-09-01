@@ -30,6 +30,7 @@
 {{ github.workflow }}
 {{ job.status }}
 {{ github.ref_protected | ternary('protected', '') }}
+{{ github.ref | regex_replace('refs/.*/(.*)', '\1') }}
 {{ github.ref_name | b64encode }}
 {{ github.ref | b64encode | b64decode }}
 {{ runner.name }} ({{ runner.os }}/{{ runner.arch }})
@@ -74,6 +75,7 @@ jobs:
 {{ name }}
 {{ sample }}
 {{ replace_uses_to }}
+{{ links.kamidana }}
 ```
 
 [variables-and-data-file-example.yml](.github/workflows/variables-and-data-file-example.yml)
@@ -84,7 +86,7 @@ on:
   pull_request:
 
 jobs:
-  variables-and-data-file-example:
+  variables-and-data-file-example-1:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -95,7 +97,30 @@ jobs:
           template: testdata/variables-and-data-file-example.j2
           output_file: test.txt
           tee: true
-          data_files: readme/replace-uses.json
+          data_files: testdata/variables-and-data-file-example.json
+          variables: |
+            sample: test
+            name: srz-zumix
+      - run: |
+          cat << EOS | tee output.txt
+          ${{ steps.kamidana.outputs.text }}
+          EOS
+          diff output.txt test.txt
+
+  variables-and-data-file-example-2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: kamidana
+        id: kamidana
+        uses: srz-zumix/kamidana-action@main
+        with:
+          template: testdata/variables-and-data-file-example.j2
+          output_file: test.txt
+          tee: true
+          data_files: |
+            readme/replace-uses.json
+            readme/links.json
           variables: |
             sample: test
             name: srz-zumix
