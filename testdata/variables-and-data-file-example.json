@@ -1,0 +1,7 @@
+{
+    "links": {
+        "kamidana": "https://github.com/podhmo/kamidana"
+    },
+    "replace_uses": "hoge",
+    "replace_uses_to": "fuga"
+}
