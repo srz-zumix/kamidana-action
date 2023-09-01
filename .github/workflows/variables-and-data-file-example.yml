@@ -3,7 +3,7 @@ on:
   pull_request:
 
 jobs:
-  variables-and-data-file-example:
+  variables-and-data-file-example-1:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,6 +17,27 @@ jobs:
           data_files: |
             readme/replace-uses.json
             readme/links.json
+          variables: |
+            sample: test
+            name: srz-zumix
+      - run: |
+          cat << EOS | tee output.txt
+          ${{ steps.kamidana.outputs.text }}
+          EOS
+          diff output.txt test.txt
+
+  variables-and-data-file-example-2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: kamidana
+        id: kamidana
+        uses: ./
+        with:
+          template: testdata/variables-and-data-file-example.j2
+          output_file: test.txt
+          tee: true
+          data_files: testdata/variables-and-data-file-example.json
           variables: |
             sample: test
             name: srz-zumix
