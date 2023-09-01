@@ -14,6 +14,7 @@ jobs:
           template: testdata/variables-and-data-file-example.j2
           output_file: test.txt
           tee: true
+          debug: true
           data_files: |
             readme/replace-uses.json
             readme/links.json
