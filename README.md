@@ -17,6 +17,8 @@
     * ternary
     * b64encode
     * b64decode
+    * [json_query](https://jmespath.org/)
+      * [playground](https://play.jmespath.org/)
 * user defined additionals
 
 ## Usage
@@ -37,6 +39,9 @@
 {% set template_filename = github.workspace + "/testdata/default-example.j2" -%}
 {{ template_filename | basename }}
 {{ template_filename | read_from_file }}
+{%- for url in (github | json_query('[*.url,*.*.url,*.*.*.url] | [] | [] | []')) %}
+* {{ url }}
+{%- endfor %}
 ```
 
 [default-example.yml](.github/workflows/default-example.yml)
@@ -78,36 +83,15 @@ jobs:
 {{ links.kamidana }}
 ```
 
-[variables-and-data-file-example.yml](.github/workflows/variables-and-data-file-example.yml)
+[variables-and-multi-data-file-example.yml](.github/workflows/variables-and-multi-data-file-example.yml)
 
 ```yaml
-name: Variables-And-Data-File-Example
+name: Variables-And-Multi-Data-File-Example
 on:
   pull_request:
 
 jobs:
-  variables-and-data-file-example-1:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: kamidana
-        id: kamidana
-        uses: srz-zumix/kamidana-action@main
-        with:
-          template: testdata/variables-and-data-file-example.j2
-          output_file: test.txt
-          tee: true
-          data_files: testdata/variables-and-data-file-example.json
-          variables: |
-            sample: test
-            name: srz-zumix
-      - run: |
-          cat << EOS | tee output.txt
-          ${{ steps.kamidana.outputs.text }}
-          EOS
-          diff output.txt test.txt
-
-  variables-and-data-file-example-2:
+  variables-and-multi-data-file-example:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

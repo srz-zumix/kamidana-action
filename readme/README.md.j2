@@ -17,6 +17,8 @@
     * ternary
     * b64encode
     * b64decode
+    * [json_query](https://jmespath.org/)
+      * [playground](https://play.jmespath.org/)
 * user defined additionals
 
 ## Usage
@@ -49,7 +51,7 @@
 ```
 {%- endwith %}
 
-{% with name=".github/workflows/variables-and-multi-data-file-example" -%}
+{% with name=".github/workflows/variables-and-multi-data-file-example.yml" -%}
 [{{ name | basename }}]({{ name }})
 
 ```yaml
