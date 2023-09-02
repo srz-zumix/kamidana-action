@@ -38,4 +38,4 @@ def b64decode(ctx, v, *, encoding='utf-8'):
 @as_filter
 @contextfilter
 def json_query(ctx, v, query):
-    return jmespath.search(query. v)
+    return jmespath.search(query, v)
