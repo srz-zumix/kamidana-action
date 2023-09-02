@@ -3,7 +3,7 @@ from kamidana import (
 )
 from jinja2.filters import contextfilter
 import base64
-import jmspath
+import jmespath
 import re
 
 
@@ -38,4 +38,4 @@ def b64decode(ctx, v, *, encoding='utf-8'):
 @ps_filter
 @contextfilter
 def json_query(ctx, v, query):
-    return jmspath.search(query. v)
+    return jmespath.search(query. v)
