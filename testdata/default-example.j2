@@ -9,4 +9,6 @@
 {% set template_filename = github.workspace + "/testdata/default-example.j2" -%}
 {{ template_filename | basename }}
 {{ template_filename | read_from_file }}
-{{ github | json_query('[*.url,*.*.url,*.*.*.url] | [] | [] | []') }}
+{%- for url in (github | json_query('[*.url,*.*.url,*.*.*.url] | [] | [] | []')) %}
+* {{ url }}
+{%- endfor %}
