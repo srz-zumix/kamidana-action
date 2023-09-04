@@ -81,6 +81,7 @@ runs:
         GITHUB_CONTEXT: ${{ toJson(github) }}
         JOB_CONTEXT: ${{ toJson(job) }}
         RUNNER_CONTEXT: ${{ toJson(runner) }}
+        VARS_CONTEXT: ${{ toJson(vars) }}
       run: "${GITHUB_ACTION_PATH}/entorypoint.sh"
 
 branding:

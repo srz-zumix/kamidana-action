@@ -71,6 +71,15 @@ if [ -n "${RUNNER_CONTEXT:-}" ]; then
     KAMIDANA_OPTINOS+=(--data "${RUNNER_TEMP}/runner.json")
 fi
 
+if [ -n "${VARS_CONTEXT:-}" ]; then
+    {
+        echo '{ "vars":'
+        echo "${VARS_CONTEXT}"
+        echo '}'
+    } > "${RUNNER_TEMP}/vars.json"
+    KAMIDANA_OPTINOS+=(--data "${RUNNER_TEMP}/vars.json")
+fi
+
 # do kamidana
 
 do_kamidana() {
