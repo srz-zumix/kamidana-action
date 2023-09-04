@@ -5,6 +5,7 @@
 {{ github.ref | regex_replace('refs/.*/(.*)', '\1') }}
 {{ github.ref_name | b64encode }}
 {{ github.ref | b64encode | b64decode }}
+{{ vars.VARIABLE_EXAMPLE }}
 {{ runner.name }} ({{ runner.os }}/{{ runner.arch }})
 {% set template_filename = github.workspace + "/testdata/default-example.j2" -%}
 {{ template_filename | basename }}
