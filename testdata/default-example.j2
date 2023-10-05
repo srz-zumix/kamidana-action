@@ -12,3 +12,5 @@
 {%- for url in (github | json_query('[*.url,*.*.url,*.*.*.url] | [] | [] | []')) %}
 * {{ url }}
 {%- endfor %}
+
+{{ github | to_nice_yaml }}
