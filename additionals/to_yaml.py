@@ -1,9 +1,9 @@
-import ruamel.yaml
-from collections import OrderedDict
-
 from kamidana import (
     as_filter,
 )
+from collections import OrderedDict
+from jinja2.filters import contextfilter
+import ruamel.yaml
 
 
 def represent_odict(dumper, instance):
