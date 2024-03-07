@@ -2,5 +2,5 @@ markupsafe==2.0.1
 ruamel.yaml
 ruamel.yaml.string
 jinja2<3.0
-kamidana
+kamidana==0.9.1
 jmespath==0.10.0
