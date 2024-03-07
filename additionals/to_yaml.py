@@ -2,7 +2,7 @@ from kamidana import (
     as_filter,
 )
 from collections import OrderedDict
-from jinja2.filters import contextfilter
+from jinja2 import pass_context
 import ruamel.yaml
 
 
@@ -29,7 +29,7 @@ def to_yaml(ctx, a, *args, **kw):
 
 
 @as_filter
-@contextfilter
+@pass_context
 def to_nice_yaml(ctx, a, indent=2, *args, **kw):
     yaml = ruamel.yaml.YAML(typ=['rt', 'string'])
     yaml.default_flow_style=False
