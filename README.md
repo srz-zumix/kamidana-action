@@ -233,8 +233,6 @@ jobs:
             i18n
             do
             loopcontrols
-            with_
-            autoescape
             debug
       - run: |
           cat << EOS | tee output.txt
