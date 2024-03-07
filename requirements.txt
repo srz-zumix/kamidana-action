@@ -1,6 +1,6 @@
 markupsafe
 ruamel.yaml
 ruamel.yaml.string
-jinja2
-kamidana
+jinja2>=3.1
+kamidana>=0.10
 jmespath
