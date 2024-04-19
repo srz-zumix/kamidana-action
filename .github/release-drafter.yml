@@ -24,6 +24,8 @@ categories:
       - 'documentation'
 exclude-labels:
   - 'invalid'
+  - 'internal-fix'
+  - 'misc'
   - 'ci'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
