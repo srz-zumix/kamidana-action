@@ -11,7 +11,7 @@ jobs:
         id: kamidana
         uses: ./
         with:
-          template: io-example.j2
+          template: testdata/io-example.j2
           output_file: test.txt
           tee: true
       - run: |
