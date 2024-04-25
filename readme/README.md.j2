@@ -34,11 +34,16 @@
 {%- endwith %}
 
 {% with name=".github/workflows/default-example.yml" -%}
-[{{ name | basename }}]({{ name }})
+{% with name="variables-and-multi-data-file-example.yml" -%}
+{% with path=".github/workflows/{{ name }}" -%}
+[{{ name }}]({{ path }})
 
 ```yaml
-{{ name | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
+{{ path | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
 ```
+
+[runs](https://github.com/srz-zumix/kamidana-action/actions/workflows/{{ name }})
+{%- endwith %}
 {%- endwith %}
 
 ### Variable / Data file Example
@@ -51,12 +56,16 @@
 ```
 {%- endwith %}
 
-{% with name=".github/workflows/variables-and-multi-data-file-example.yml" -%}
-[{{ name | basename }}]({{ name }})
+{% with name="variables-and-multi-data-file-example.yml" -%}
+{% with path=".github/workflows/{{ name }}" -%}
+[{{ name }}]({{ path }})
 
 ```yaml
-{{ name | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
+{{ path | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
 ```
+
+[runs](https://github.com/srz-zumix/kamidana-action/actions/workflows/{{ name }})
+{%- endwith %}
 {%- endwith %}
 
 ### Additionals Example
@@ -77,12 +86,38 @@
 ```
 {%- endwith %}
 
-{% with name=".github/workflows/additionals-example.yml" -%}
-[{{ name | basename }}]({{ name }})
+{% with name="additionals-example.yml" -%}
+{% with path=".github/workflows/{{ name }}" -%}
+[{{ name }}]({{ path }})
 
 ```yaml
-{{ name | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
+{{ path | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
 ```
+
+[runs](https://github.com/srz-zumix/kamidana-action/actions/workflows/{{ name }})
+{%- endwith %}
+{%- endwith %}
+
+### IO Example
+
+{% with name="testdata/io-example.j2" -%}
+[{{ name | basename }}]({{ name }})
+
+```text
+{{ name | read_from_file(relative_self=False) | trim }}
+```
+{%- endwith %}
+
+{% with name="io-example.yml" -%}
+{% with path=".github/workflows/{{ name }}" -%}
+[{{ name }}]({{ path }})
+
+```yaml
+{{ path | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
+```
+
+[runs](https://github.com/srz-zumix/kamidana-action/actions/workflows/{{ name }})
+{%- endwith %}
 {%- endwith %}
 
 ### Extensions Example
@@ -95,12 +130,16 @@
 ```
 {%- endwith %}
 
-{% with name=".github/workflows/extensions-example.yml" -%}
-[{{ name | basename }}]({{ name }})
+{% with name="extensions-example.yml" -%}
+{% with path=".github/workflows/{{ name }}" -%}
+[{{ name }}]({{ path }})
 
 ```yaml
-{{ name | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
+{{ path | read_from_file(relative_self=False) | replace(replace_uses, replace_uses_to)| trim }}
 ```
+
+[runs](https://github.com/srz-zumix/kamidana-action/actions/workflows/{{ name }})
+{%- endwith %}
 {%- endwith %}
 
 [kamidana]:{{ links.kamidana }}
