@@ -19,6 +19,7 @@ ruamel.yaml.add_constructor('tag:yaml.org,2002:map', construct_odict)
 
 
 @as_filter
+@pass_context
 def to_yaml(ctx, a, *args, **kw):
     yaml = ruamel.yaml.YAML(typ=['rt', 'string'])
     yaml.default_flow_style = kw.pop('default_flow_style', None)

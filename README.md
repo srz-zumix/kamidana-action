@@ -11,14 +11,23 @@
   * [reader](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/reader.py)
 * kamidana-action additonals
   * [io](additionals/io.py)
+    * relativepath
+    * abspath
     * basename
     * dirname
+    * path_exists
+    * listdir
+    * listdir_files
+    * listdir_dirs
   * [filter](additionals/filter.py)
     * ternary
     * b64encode
     * b64decode
     * [json_query](https://jmespath.org/)
       * [playground](https://play.jmespath.org/)
+  * [to_yaml](additionals/to_yaml.py)
+    * to_yaml
+    * to_nice_yaml
 * user defined additionals
 
 ## Usage
@@ -42,6 +51,8 @@
 {%- for url in (github | json_query('[*.url,*.*.url,*.*.*.url] | [] | [] | []')) %}
 * {{ url }}
 {%- endfor %}
+
+{{ github | to_nice_yaml }}
 ```
 
 [default-example.yml](.github/workflows/default-example.yml)
@@ -55,7 +66,7 @@ jobs:
   default-example:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: kamidana
         id: kamidana
         uses: srz-zumix/kamidana-action@main
@@ -64,11 +75,13 @@ jobs:
           output_file: test.txt
           tee: true
       - run: |
-          cat << EOS | tee output.txt
+          cat << 'EOS' | tee output.txt
           ${{ steps.kamidana.outputs.text }}
           EOS
           diff output.txt test.txt
 ```
+
+[runs](https://github.com/srz-zumix/kamidana-action/actions/workflows/default-example.yml)
 
 ### Variable / Data file Example
 
@@ -94,7 +107,7 @@ jobs:
   variables-and-multi-data-file-example:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: kamidana
         id: kamidana
         uses: srz-zumix/kamidana-action@main
@@ -109,11 +122,13 @@ jobs:
             sample: test
             name: srz-zumix
       - run: |
-          cat << EOS | tee output.txt
+          cat << 'EOS' | tee output.txt
           ${{ steps.kamidana.outputs.text }}
           EOS
           diff output.txt test.txt
 ```
+
+[runs](https://github.com/srz-zumix/kamidana-action/actions/workflows/variables-and-multi-data-file-example.yml)
 
 ### Additionals Example
 
@@ -156,7 +171,7 @@ jobs:
   additionals-example:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: kamidana
         id: kamidana
         uses: srz-zumix/kamidana-action@main
@@ -172,11 +187,73 @@ jobs:
             amaterasu.amaterasu
             testdata/surprised.py
       - run: |
-          cat << EOS | tee output.txt
+          cat << 'EOS' | tee output.txt
           ${{ steps.kamidana.outputs.text }}
           EOS
           diff output.txt test.txt
 ```
+
+[runs](https://github.com/srz-zumix/kamidana-action/actions/workflows/additionals-example.yml)
+
+### IO Example
+
+[io-example.j2](testdata/io-example.j2)
+
+```text
+{{ "." | abspath }}
+{{ "." | abspath | basename }}
+{{ "." | listdir }}
+{{ "LICENSE" | relativepath }}
+{% if ("LICENSE" | path_exists) %}
+    {{ "LICENSE" | read_from_file(relative_self=False) }}
+{% endif %}
+```
+
+[io-example.yml](.github/workflows/io-example.yml)
+
+```yaml
+name: IO-Example
+on:
+  pull_request:
+
+jobs:
+  io-example:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: kamidana
+        id: kamidana
+        uses: srz-zumix/kamidana-action@main
+        with:
+          template: testdata/io-example.j2
+          output_file: test.txt
+          tee: true
+      - run: |
+          cat << 'EOS' | tee output.txt
+          ${{ steps.kamidana.outputs.text }}
+          EOS
+          diff output.txt test.txt
+
+  io-example-wd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: kamidana
+        id: kamidana
+        uses: srz-zumix/kamidana-action@main
+        with:
+          template: io-example.j2
+          output_file: test.txt
+          tee: true
+          working-directory: testdata
+      - run: |
+          cat << 'EOS' | tee output.txt
+          ${{ steps.kamidana.outputs.text }}
+          EOS
+          diff output.txt testdata/test.txt
+```
+
+[runs](https://github.com/srz-zumix/kamidana-action/actions/workflows/io-example.yml)
 
 ### Extensions Example
 
@@ -221,7 +298,7 @@ jobs:
   extensions-example:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: kamidana
         id: kamidana
         uses: srz-zumix/kamidana-action@main
@@ -235,10 +312,12 @@ jobs:
             loopcontrols
             debug
       - run: |
-          cat << EOS | tee output.txt
+          cat << 'EOS' | tee output.txt
           ${{ steps.kamidana.outputs.text }}
           EOS
           diff output.txt test.txt
 ```
+
+[runs](https://github.com/srz-zumix/kamidana-action/actions/workflows/extensions-example.yml)
 
 [kamidana]:https://github.com/podhmo/kamidana
