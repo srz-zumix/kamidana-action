@@ -9,7 +9,7 @@ import os
 @pass_context
 def relativepath(ctx, v):
     dirname = os.path.dirname(os.path.abspath(ctx.name))
-    return os.path.normpath(os.path.join(dirname, filename))
+    return os.path.normpath(os.path.join(dirname, v))
 
 
 @as_filter
