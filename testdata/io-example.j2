@@ -1,0 +1,6 @@
+{{ abspath(".") }}
+{{ basename(abspath(".")) }}
+{{ listdir(".") }}
+{% if path_exists("LICENSE") %}
+    read_from_file("LICENSE")
+{% endif %}
