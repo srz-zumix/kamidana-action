@@ -11,14 +11,23 @@
   * [reader](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/reader.py)
 * kamidana-action additonals
   * [io](additionals/io.py)
+    * relativepath
+    * abspath
     * basename
     * dirname
+    * path_exists
+    * listdir
+    * listdir_files
+    * listdir_dirs
   * [filter](additionals/filter.py)
     * ternary
     * b64encode
     * b64decode
     * [json_query](https://jmespath.org/)
       * [playground](https://play.jmespath.org/)
+  * [to_yaml](additionals/to_yaml.py)
+    * to_yaml
+    * to_nice_yaml
 * user defined additionals
 
 ## Usage
@@ -33,9 +42,8 @@
 ```
 {%- endwith %}
 
-{% with name=".github/workflows/default-example.yml" -%}
-{% with name="variables-and-multi-data-file-example.yml" -%}
-{% with path=".github/workflows/{{ name }}" -%}
+{% with name="default-example.yml" -%}
+{% with path=".github/workflows/" ~ name -%}
 [{{ name }}]({{ path }})
 
 ```yaml
@@ -57,7 +65,7 @@
 {%- endwith %}
 
 {% with name="variables-and-multi-data-file-example.yml" -%}
-{% with path=".github/workflows/{{ name }}" -%}
+{% with path=".github/workflows/" ~ name -%}
 [{{ name }}]({{ path }})
 
 ```yaml
@@ -87,7 +95,7 @@
 {%- endwith %}
 
 {% with name="additionals-example.yml" -%}
-{% with path=".github/workflows/{{ name }}" -%}
+{% with path=".github/workflows/" ~ name -%}
 [{{ name }}]({{ path }})
 
 ```yaml
@@ -109,7 +117,7 @@
 {%- endwith %}
 
 {% with name="io-example.yml" -%}
-{% with path=".github/workflows/{{ name }}" -%}
+{% with path=".github/workflows/" ~ name -%}
 [{{ name }}]({{ path }})
 
 ```yaml
@@ -131,7 +139,7 @@
 {%- endwith %}
 
 {% with name="extensions-example.yml" -%}
-{% with path=".github/workflows/{{ name }}" -%}
+{% with path=".github/workflows/" ~ name -%}
 [{{ name }}]({{ path }})
 
 ```yaml
