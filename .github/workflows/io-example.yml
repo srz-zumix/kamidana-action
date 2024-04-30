@@ -3,7 +3,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  io-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +20,7 @@ jobs:
           output_file: test.txt
           tee: true
       - run: |
-          find . -type d -depth 1 | tee output.txt
+          find . -type=d -depth=1 | tee output.txt
           diff output.txt test.txt
 
   io-example:
