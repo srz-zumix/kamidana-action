@@ -3,6 +3,26 @@ on:
   pull_request:
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create TestData
+        run: |
+          cat << 'EOS' > io-test.j2
+          {{ "." | listdir_dirs }}
+          EOS
+      - name: kamidana
+        id: kamidana
+        uses: ./
+        with:
+          template: io-test.j2
+          output_file: test.txt
+          tee: true
+      - run: |
+          find . -type d -depth 1 | tee output.txt
+          diff output.txt test.txt
+
   io-example:
     runs-on: ubuntu-latest
     steps:
