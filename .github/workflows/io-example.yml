@@ -11,6 +11,7 @@ jobs:
         run: |
           cat << 'EOS' > io-test.j2
           {% for f in "./.github" | listdir_dirs %}./{{ f }}
+          {% endfor -%}
           ---
           {% for f in "./.github" | listdir_files %}./{{ f }}
           {% endfor -%}
@@ -24,9 +25,11 @@ jobs:
           tee: true
       - name: Test
         run: |
-          find ./.github -type d -mindepth 1 -maxdepth 1 >> output.txt
-          echo "---" >> output.txt
-          find ./.github -type f -mindepth 1 -maxdepth 1 >> output.txt
+          {
+            find ./.github -type d -mindepth 1 -maxdepth 1
+            echo "---"
+            find ./.github -type f -mindepth 1 -maxdepth 1
+          } >> output.txt
           diff output.txt test.txt
       - run: |
           cat output.txt
