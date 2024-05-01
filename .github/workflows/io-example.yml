@@ -10,10 +10,11 @@ jobs:
       - name: Create TestData
         run: |
           cat << 'EOS' > io-test.j2
-          {% for f in "./.github" | listdir_dirs %}./{{ f }}
+          {% set dir = "./.github" }
+          {% for f in dir | listdir_dirs %}{{ dir }}/{{ f }}
           {% endfor -%}
           ---
-          {% for f in "./.github" | listdir_files %}./{{ f }}
+          {% for f in dir | listdir_files %}{{ dir }}/{{ f }}
           {% endfor -%}
           EOS
       - name: kamidana
