@@ -15,7 +15,6 @@ jobs:
           {%- for f in dirs %}
           ./{{ f }}
           {%- endfor %}
-          {%- endwith %}
           EOS
       - name: kamidana
         id: kamidana
