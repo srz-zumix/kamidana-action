@@ -3,6 +3,43 @@ on:
   pull_request:
 
 jobs:
+  io-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create TestData
+        run: |
+          cat << 'EOS' > io-test.j2
+          {%- set dir = "./.github" -%}
+          {% for f in dir | listdir_dirs %}{{ dir }}/{{ f }}
+          {% endfor -%}
+          ---
+          {% for f in dir | listdir_files %}{{ dir }}/{{ f }}
+          {% endfor -%}
+          EOS
+      - name: kamidana
+        id: kamidana
+        uses: ./
+        with:
+          template: io-test.j2
+          output_file: test.txt
+          tee: true
+      - name: Test
+        run: |
+          {
+            find ./.github -type d -mindepth 1 -maxdepth 1
+            echo "---"
+            find ./.github -type f -mindepth 1 -maxdepth 1
+          } >> output.txt
+          diff output.txt test.txt
+      - run: |
+          cat output.txt
+          echo "====="
+          cat test.txt
+          echo "====="
+          cat "io-test.j2"
+        if: failure()
+
   io-example:
     runs-on: ubuntu-latest
     steps:
