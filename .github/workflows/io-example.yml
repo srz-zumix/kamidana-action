@@ -12,6 +12,7 @@ jobs:
           cat << 'EOS' > io-test.j2
           {% with dirs = "." | listdir_dirs %}
           {{ dirs }}
+          {{ range(10) }}
           {%- for f in dirs %}
           ./{{ f }}
           {%- endfor %}
