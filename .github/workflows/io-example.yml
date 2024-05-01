@@ -10,8 +10,9 @@ jobs:
       - name: Create TestData
         run: |
           cat << 'EOS' > io-test.j2
-          {% set dirs = "." | listdir %}
-          {{ dirs | length }}
+          {% set dirs = "." | listdir_dirs %}
+          {{ dirs | typeof }}
+          {{ "." | listdir | typeof }}
           {%- for f in dirs %}
           ./{{ f }}
           {%- endfor %}
