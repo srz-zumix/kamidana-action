@@ -10,7 +10,8 @@ jobs:
       - name: Create TestData
         run: |
           cat << 'EOS' > io-test.j2
-          {%- for f in "." | listdir_dirs -%}
+          {%- set dirs= "." | listdir_dirs -%}
+          {%- for f in dirs %}
           ./{{ f }}
           {%- endfor -%}
           EOS
