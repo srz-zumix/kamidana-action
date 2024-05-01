@@ -11,6 +11,7 @@ jobs:
         run: |
           cat << 'EOS' > io-test.j2
           {% set dirs = "." | listdir_dirs | list %}
+          {{ dirs | length}}
           {% set len = dirs | length %}
           {%- for f in range(len) %}
           ./{{ dirs[f] }}
