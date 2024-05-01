@@ -51,4 +51,4 @@ def listdir_files(ctx, v):
 @as_filter
 @pass_context
 def listdir_dirs(ctx, v):
-    return [f for f in os.listdir(str(v)) if os.path.isdir(f)]
+    return list([f for f in os.listdir(str(v)) if os.path.isdir(f)])
