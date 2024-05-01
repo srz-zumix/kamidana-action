@@ -12,7 +12,7 @@ jobs:
           cat << 'EOS' > io-test.j2
           {%- for f in "." | listdir_dirs %}
           ./{{ f }}
-          {%- endfor %}
+          {%- endfor -%}
           EOS
       - name: kamidana
         id: kamidana
