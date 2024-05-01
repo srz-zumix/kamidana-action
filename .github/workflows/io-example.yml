@@ -11,10 +11,9 @@ jobs:
         run: |
           cat << 'EOS' > io-test.j2
           {% set dirs = "." | listdir_dirs | list %}
-          {{ dirs | typeof }}
-          {{ "." | listdir | typeof }}
-          {%- for f in dirs %}
-          ./{{ f }}
+          {% set len = dirs | length %}
+          {%- for f in range(len) %}
+          ./{{ dirs[f] }}
           {%- endfor %}
           EOS
       - name: kamidana
