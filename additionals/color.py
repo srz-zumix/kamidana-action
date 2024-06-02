@@ -22,7 +22,7 @@ def status_other_color():
 @as_filter
 @pass_context
 def outcome_color(ctx, v):
-  lower_v = v.lowwer()
+  lower_v = v.lower()
   if lower_v == 'success':
     return status_success_color()
   if lower_v == 'failure':
