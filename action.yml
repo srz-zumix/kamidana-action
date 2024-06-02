@@ -83,6 +83,7 @@ runs:
         INPUTS_DUMP_CONTEXT: ${{ inputs.dump_context }}
         INPUTS_DEBUG: ${{ inputs.debug }}
         GITHUB_CONTEXT: ${{ toJson(github) }}
+        INPUTS_CONTEXT: ${{ toJson(github.event.inputs) }}
         JOB_CONTEXT: ${{ toJson(job) }}
         RUNNER_CONTEXT: ${{ toJson(runner) }}
       run: "${GITHUB_ACTION_PATH}/entorypoint.sh"
