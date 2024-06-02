@@ -56,6 +56,15 @@ if [ -n "${GITHUB_CONTEXT:-}" ]; then
     KAMIDANA_OPTINOS+=(--data "${RUNNER_TEMP}/github.json")
 fi
 
+if [ -n "${INPUTS_CONTEXT:-}" ]; then
+    {
+        echo '{ "inputs":'
+        echo "${INPUTS_CONTEXT}"
+        echo '}'
+    } > "${RUNNER_TEMP}/inputs.json"
+    KAMIDANA_OPTINOS+=(--data "${RUNNER_TEMP}/inputs.json")
+fi
+
 if [ -n "${JOB_CONTEXT:-}" ]; then
     {
         echo '{ "job":'
