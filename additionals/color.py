@@ -3,6 +3,8 @@ from kamidana import (
     as_global,
 )
 from jinja2 import pass_context
+import os
+
 
 @as_global
 def status_success_color():
