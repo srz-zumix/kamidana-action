@@ -10,6 +10,18 @@
   * [naming](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/naming.py)
   * [reader](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/reader.py)
 * kamidana-action additonals
+  * [color](additionals/color.py)
+    * status_success_color
+    * status_failure_color
+    * status_other_color
+    * outcome_color
+    * status_color
+  * [filter](additionals/filter.py)
+    * ternary
+    * b64encode
+    * b64decode
+    * [json_query](https://jmespath.org/)
+      * [playground](https://play.jmespath.org/)
   * [io](additionals/io.py)
     * relativepath
     * abspath
@@ -19,12 +31,6 @@
     * listdir
     * listdir_files
     * listdir_dirs
-  * [filter](additionals/filter.py)
-    * ternary
-    * b64encode
-    * b64decode
-    * [json_query](https://jmespath.org/)
-      * [playground](https://play.jmespath.org/)
   * [to_yaml](additionals/to_yaml.py)
     * to_yaml
     * to_nice_yaml
@@ -39,7 +45,7 @@
 ```text
 {{ github.job }}
 {{ github.workflow }}
-{{ job.status }}
+{{ job.status | outcome_color }}
 {{ github.ref_protected | ternary('protected', '') }}
 {{ github.ref | regex_replace('refs/.*/(.*)', '\1') }}
 {{ github.ref_name | b64encode }}
@@ -203,6 +209,8 @@ jobs:
 {{ "." | abspath }}
 {{ "." | abspath | basename }}
 {{ "." | listdir }}
+{{ "." | listdir_files }}
+{{ "." | listdir_dirs }}
 {{ "LICENSE" | relativepath }}
 {% if ("LICENSE" | path_exists) %}
     {{ "LICENSE" | read_from_file(relative_self=False) }}
@@ -217,6 +225,43 @@ on:
   pull_request:
 
 jobs:
+  io-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create TestData
+        run: |
+          cat << 'EOS' > io-test.j2
+          {%- set dir = "./.github" -%}
+          {% for f in dir | listdir_dirs %}{{ dir }}/{{ f }}
+          {% endfor -%}
+          ---
+          {% for f in dir | listdir_files %}{{ dir }}/{{ f }}
+          {% endfor -%}
+          EOS
+      - name: kamidana
+        id: kamidana
+        uses: srz-zumix/kamidana-action@main
+        with:
+          template: io-test.j2
+          output_file: test.txt
+          tee: true
+      - name: Test
+        run: |
+          {
+            find ./.github -type d -mindepth 1 -maxdepth 1
+            echo "---"
+            find ./.github -type f -mindepth 1 -maxdepth 1
+          } >> output.txt
+          diff output.txt test.txt
+      - run: |
+          cat output.txt
+          echo "====="
+          cat test.txt
+          echo "====="
+          cat "io-test.j2"
+        if: failure()
+
   io-example:
     runs-on: ubuntu-latest
     steps:

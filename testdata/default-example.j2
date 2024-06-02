@@ -1,6 +1,6 @@
 {{ github.job }}
 {{ github.workflow }}
-{{ job.status }}
+{{ job.status | outcome_color }}
 {{ github.ref_protected | ternary('protected', '') }}
 {{ github.ref | regex_replace('refs/.*/(.*)', '\1') }}
 {{ github.ref_name | b64encode }}
