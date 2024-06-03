@@ -22,6 +22,9 @@
     * b64decode
     * [json_query](https://jmespath.org/)
       * [playground](https://play.jmespath.org/)
+  * [github](additionals/github.py)
+    * get_user
+    * get_user_email
   * [io](additionals/io.py)
     * relativepath
     * abspath
@@ -46,6 +49,7 @@
 {{ github.job }}
 {{ github.workflow }}
 {{ job.status | outcome_color }}
+{{ (github.actor | github_user).html_url }}
 {{ github.ref_protected | ternary('protected', '') }}
 {{ github.ref | regex_replace('refs/.*/(.*)', '\1') }}
 {{ github.ref_name | b64encode }}
