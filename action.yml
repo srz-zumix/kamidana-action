@@ -39,6 +39,10 @@ inputs:
     description: 'working directory'
     default: ${{ github.workspace }}
     required: false
+  github_token:
+    description: 'github token for github filter'
+    default: ${{ github.token }}
+    required: false
   debug:
     description: 'enable kamidana debug'
     default: false
@@ -86,6 +90,7 @@ runs:
         INPUTS_CONTEXT: ${{ toJson(github.event.inputs) }}
         JOB_CONTEXT: ${{ toJson(job) }}
         RUNNER_CONTEXT: ${{ toJson(runner) }}
+        INPUTS_GITHUB_TOKEN: ${{ inputs.github_token }}
       run: "${GITHUB_ACTION_PATH}/entorypoint.sh"
       working-directory: ${{ inputs.working-directory }}
 
