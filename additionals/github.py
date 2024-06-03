@@ -8,7 +8,7 @@ from github import Auth
 
 import os
 
-auth = Auth.Token(os.getenv('GITHUB_TOKEN'))
+auth = Auth.Token(os.getenv('GITHUB_TOKEN', ''))
 g = Github(base_url=os.getenv('GITHUB_API_URL', 'https://api.github.com'), auth=auth)
 
 
