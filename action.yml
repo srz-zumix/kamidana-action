@@ -40,7 +40,8 @@ inputs:
     default: ${{ github.workspace }}
     required: false
   github_token:
-    description: 'github token'
+    description: 'github token for github filter'
+    default: ${{ github.token }}
     required: false
   debug:
     description: 'enable kamidana debug'
