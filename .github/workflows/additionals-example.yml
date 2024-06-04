@@ -1,6 +1,7 @@
 name: Additionals-Example
 on:
   pull_request:
+  workflow_dispatch:
 
 env:
   SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
