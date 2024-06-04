@@ -39,6 +39,10 @@ inputs:
     description: 'working directory'
     default: ${{ github.workspace }}
     required: false
+  python-version:
+    description: 'setup-python python-version. if empty, skip setup-python.'
+    default: '3.10'
+    required: false
   github_token:
     description: 'github token for github filter'
     default: ${{ github.token }}
@@ -59,9 +63,10 @@ runs:
     - name: setup-python
       uses: actions/setup-python@v5
       with:
-        python-version: ${{ env.PYTHON_VERSION || '3.10' }}
+        python-version: ${{ inputs.python-version }}
         # cache: 'pip'
         # cache-dependency-path: ${{ github.action_path  }}/requirements.txt
+      if: inputs.python-version != ''
     - name: pip install
       env:
         INPUTS_REQUIREMENTS: ${{ inputs.requirements }}
