@@ -45,3 +45,4 @@ def json_query(ctx, v, query):
 @pass_context
 def typeof(ctx, v):
   return type(v)
+
