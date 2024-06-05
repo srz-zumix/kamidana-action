@@ -45,3 +45,13 @@ def json_query(ctx, v, query):
 @pass_context
 def typeof(ctx, v):
   return type(v)
+
+
+@as_filter
+@pass_context
+def is_success(ctx, v):
+  if isinstance(v, str):
+    return v.lower() in ('success', 'succeeded', 'pass', 'passed', 'ok')
+  if v:
+    return True
+  return False
