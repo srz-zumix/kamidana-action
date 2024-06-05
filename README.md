@@ -11,6 +11,8 @@
   * [reader](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/reader.py)
 * kamidana-action additonals
   * [color](additionals/color.py)
+    * is_success
+    * is_failure
     * (as_global) status_success_color
     * (as_global) status_failure_color
     * (as_global) status_other_color
@@ -35,9 +37,6 @@
     * listdir
     * listdir_files
     * listdir_dirs
-  * [status](additionals/status.py)
-    * is_success
-    * is_failure
   * [to_yaml](additionals/to_yaml.py)
     * to_yaml
     * to_nice_yaml

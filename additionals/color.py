@@ -7,6 +7,44 @@ from colour import Color
 import os
 
 
+success_texts = [
+  "success",
+  "succeeded",
+  "pass",  
+  "passed",
+  "ok",
+]
+
+failure_texts = [
+  "failure",
+  "failed",
+  "fail",
+  "error",
+  "errored",
+  "ng",
+]
+
+
+@as_filter
+@pass_context
+def is_success(ctx, v):
+  if isinstance(v, str):
+    return v.lower() in success_texts
+  if v:
+    return True
+  return False
+
+
+@as_filter
+@pass_context
+def is_failure(ctx, v):
+  if isinstance(v, str):
+    return v.lower() in failure_texts
+  if v:
+    return True
+  return False
+
+
 @as_global
 def status_success_color():
   return Color(os.getenv('KAMIDANA_STATUS_SUCCESS', '#1f883d'))
