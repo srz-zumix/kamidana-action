@@ -35,6 +35,9 @@
     * listdir
     * listdir_files
     * listdir_dirs
+  * [status](additionals/status.py)
+    * is_success
+    * is_failure
   * [to_yaml](additionals/to_yaml.py)
     * to_yaml
     * to_nice_yaml

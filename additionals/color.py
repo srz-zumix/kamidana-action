@@ -33,31 +33,12 @@ def outcome_color(ctx, v):
   return status_other_color()
 
 
-success_texts = [
-  "success",
-  "succeeded",
-  "pass",  
-  "passed",
-  "ok",
-]
-
-failure_texts = [
-  "failure",
-  "failed",
-  "fail",
-  "error",
-  "errored",
-  "ng",
-]
-
-
 @as_filter
 @pass_context
 def status_color(ctx, v):
-  lower_v = v.lower()
-  if lower_v in success_texts:
+  if is_success(ctx, v):
     return status_success_color()
-  if lower_v in failure_texts:
+  if is_failure(ctx, v):
     return status_failure_color()
   return status_other_color()
 

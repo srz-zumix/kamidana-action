@@ -5,3 +5,6 @@ README.md: readme/README.md.j2 Makefile additionals/*.py entorypoint.sh
 
 setup:
 	pip install -r requirements.txt
+
+clean:
+	rm -f README.md
