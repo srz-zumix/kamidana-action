@@ -11,11 +11,12 @@
   * [reader](https://github.com/podhmo/kamidana/blob/master/kamidana/additionals/reader.py)
 * kamidana-action additonals
   * [color](additionals/color.py)
-    * status_success_color
-    * status_failure_color
-    * status_other_color
+    * (as_global) status_success_color
+    * (as_global) status_failure_color
+    * (as_global) status_other_color
     * outcome_color
     * status_color
+    * discord_color
   * [filter](additionals/filter.py)
     * ternary
     * b64encode
@@ -48,7 +49,8 @@
 ```text
 {{ github.job }}
 {{ github.workflow }}
-{{ job.status | outcome_color }}
+{{ "ng" | status_color }}
+{{ job.status | outcome_color | discord_color }}
 {{ (github.actor | github_user).html_url }}
 {{ github.ref_protected | ternary('protected', '') }}
 {{ github.ref | regex_replace('refs/.*/(.*)', '\1') }}
@@ -173,6 +175,7 @@ def surprised(v):
 name: Additionals-Example
 on:
   pull_request:
+  workflow_dispatch:
 
 env:
   SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
