@@ -16,7 +16,7 @@
     * (as_global) status_success_color
     * (as_global) status_failure_color
     * (as_global) status_other_color
-    * outcome_color
+    * actions_status_color
     * status_color
     * discord_color
   * [filter](additionals/filter.py)
