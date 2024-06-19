@@ -72,10 +72,10 @@ runs:
         INPUTS_REQUIREMENTS: ${{ inputs.requirements }}
       shell: bash
       run: |
-        pip install -r ${GITHUB_ACTION_PATH}/requirements.txt
+        pip install --upgrade -r ${GITHUB_ACTION_PATH}/requirements.txt
         if [ -n "${INPUTS_REQUIREMENTS}" ]; then
           echo "${INPUTS_REQUIREMENTS}" > "${RUNNER_TEMP}/requirements.txt"
-          pip install -r "${RUNNER_TEMP}/requirements.txt"
+          pip install --upgrade -r "${RUNNER_TEMP}/requirements.txt"
         fi
     - name: kamidana
       shell: bash
