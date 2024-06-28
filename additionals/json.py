@@ -14,8 +14,8 @@ def json_query(ctx, v, query):
 
 @as_filter
 @pass_context
-def json_dumps(ctx, v):
-  return json.dumps(v)
+def json_dumps(ctx, v, *, ensure_ascii=False, indent=None, sort_keys=False):
+  return json.dumps(v, ensure_ascii=ensure_ascii, indent=indent, sort_keys=sort_keys)
 
 
 @as_filter
