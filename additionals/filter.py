@@ -3,7 +3,6 @@ from kamidana import (
 )
 from jinja2 import pass_context
 import base64
-import jmespath
 import re
 
 
@@ -33,12 +32,6 @@ def b64encode(ctx, v, *, encoding='utf-8'):
 @pass_context
 def b64decode(ctx, v, *, encoding='utf-8'):
   return base64.b64decode(v).decode(encoding)
-
-
-@as_filter
-@pass_context
-def json_query(ctx, v, query):
-  return jmespath.search(query, v)
 
 
 @as_filter
