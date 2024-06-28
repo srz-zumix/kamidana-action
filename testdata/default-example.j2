@@ -14,7 +14,7 @@
 {%- for url in (github | json_query('[*.url,*.*.url,*.*.*.url] | [] | [] | []')) %}
 * {{ url }}
 {%- endfor %}
-{{ 'test\n' | json_dumps }}
+{{ '日本語test\n' | json_dumps(ensure_ascii=True) }}
 {{ (github.event | json_dumps | json_loads).repository.name }}
 
 {{ github | to_nice_yaml }}
