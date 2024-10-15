@@ -40,7 +40,7 @@ do
     KAMIDANA_OPTINOS+=(--extension "${line}")
 done < <(printf '%s' "${INPUTS_EXTENSIONS:-}")
 
-OUTPUT_FILE=${INPUTS_OUTPUT_FILE:-kamidana-output.txt}
+OUTPUT_FILE=${INPUTS_OUTPUT_FILE:-/tmp/kamidana-output.txt}
 OUTPUT_DIR=$(dirname "${OUTPUT_FILE}")
 
 mkdir -p "${OUTPUT_DIR}" || python -c "import os; os.makedirs(\"${OUTPUT_DIR}\", exist_ok=True)" || :
