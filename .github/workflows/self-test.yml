@@ -1,4 +1,4 @@
-name: Deump-Context
+name: Self Test
 on:
   pull_request:
 
@@ -14,3 +14,14 @@ jobs:
           template: testdata/default-example.j2
           output_file: test.txt
           dump_context: true
+
+  no-output-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: kamidana
+        id: kamidana
+        uses: ./
+        with:
+          template: testdata/default-example.j2
+      - name:
