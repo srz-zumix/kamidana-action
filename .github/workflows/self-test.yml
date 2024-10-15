@@ -24,4 +24,6 @@ jobs:
         uses: ./
         with:
           template: testdata/default-example.j2
-      - name:
+      - name: Test
+        run: |
+          git diff --exit-code
