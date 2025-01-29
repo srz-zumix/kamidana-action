@@ -3,6 +3,29 @@ on:
   pull_request:
 
 jobs:
+  os-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: kamidana
+        id: kamidana
+        uses: ./
+        with:
+          template: testdata/default-example.j2
+          output_file: test.txt
+          tee: true
+      - run: |
+          cat << 'EOS' | tee output.txt
+          ${{ steps.kamidana.outputs.text }}
+          EOS
+          diff output.txt test.txt
+
   dump-context:
     runs-on: ubuntu-latest
     steps:
