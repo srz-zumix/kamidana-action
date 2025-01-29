@@ -1,6 +1,6 @@
 readme: README.md
 
-README.md: readme/README.md.j2 Makefile additionals/*.py entorypoint.sh
+README.md: readme/README.md.j2 Makefile additionals/*.py testdata/* entorypoint.sh
 	INPUTS_OUTPUT_FILE=$@ ./entorypoint.sh $< -d readme/replace-uses.json -d readme/links.json
 
 setup:
