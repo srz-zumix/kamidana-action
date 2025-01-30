@@ -21,7 +21,9 @@ jobs:
           template: testdata/default-example.j2
           output_file: test.txt
           tee: true
-      - run: |
+      - name: Test
+        shell: bash
+        run: |
           cat << 'EOS' | tee output.txt
           ${{ steps.kamidana.outputs.text }}
           EOS

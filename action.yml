@@ -43,6 +43,10 @@ inputs:
     description: 'setup-python python-version. if empty, skip setup-python.'
     default: '3.10'
     required: false
+  python-enconding:
+    description: 'python encoding'
+    default: 'utf-8'
+    required: false
   github_token:
     description: 'github token for github filter'
     default: ${{ github.token }}
@@ -96,7 +100,7 @@ runs:
         JOB_CONTEXT: ${{ toJson(job) }}
         RUNNER_CONTEXT: ${{ toJson(runner) }}
         INPUTS_GITHUB_TOKEN: ${{ inputs.github_token }}
-        PYTHONUTF8: 1
+        PYTHONIOENCODING: ${{ inputs.python-enconding }}
       run: "${GITHUB_ACTION_PATH}/entorypoint.sh"
       working-directory: ${{ inputs.working-directory }}
 
