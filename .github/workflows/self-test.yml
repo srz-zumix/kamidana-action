@@ -27,6 +27,8 @@ jobs:
           cat << 'EOS' | tee output.txt
           ${{ steps.kamidana.outputs.text }}
           EOS
+          file output.txt
+          file test.txt
           diff output.txt test.txt
 
   dump-context:
