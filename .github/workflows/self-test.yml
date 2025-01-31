@@ -27,7 +27,10 @@ jobs:
           cat << 'EOS' | tee output.txt
           ${{ steps.kamidana.outputs.text }}
           EOS
-          diff output.txt test.txt
+          diff -w output.txt test.txt
+          od -c output.txt | grep '\\r' || :
+          echo "====="
+          od -c test.txt   | grep '\\r' || :
 
   dump-context:
     runs-on: ubuntu-latest
