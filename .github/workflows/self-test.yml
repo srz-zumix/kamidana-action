@@ -20,6 +20,7 @@ jobs:
         with:
           template: testdata/default-example.j2
           output_file: test.txt
+          tee: true
       - name: Test
         shell: bash
         run: |
