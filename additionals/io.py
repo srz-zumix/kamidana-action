@@ -4,8 +4,6 @@ from kamidana import (
 from jinja2 import pass_context
 import os
 
-# for windows
-os.linesep = '\n'
 
 @as_filter
 @pass_context
