@@ -97,7 +97,8 @@ else
     if [ "${INPUTS_TEE:-true}" == 'true' ]; then
         do_kamidana "$@" | tee "${OUTPUT_FILE}"
     else
-        do_kamidana --dst "${OUTPUT_FILE}" "$@"
+        KAMIDANA_OPTINOS+=(--dst "${OUTPUT_FILE}")
+        do_kamidana "$@"
     fi
 
     if [ -n "${GITHUB_OUTPUT:-}" ]; then
