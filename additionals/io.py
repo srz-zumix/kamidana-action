@@ -3,6 +3,11 @@ from kamidana import (
 )
 from jinja2 import pass_context
 import os
+import io
+
+
+# no univeral newlines
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, newline='')
 
 
 @as_filter
