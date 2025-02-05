@@ -2,7 +2,13 @@ from kamidana import (
     as_filter,
 )
 from jinja2 import pass_context
+import io
 import os
+import sys
+
+
+# no univeral newlines
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, newline='')
 
 
 @as_filter

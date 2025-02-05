@@ -96,6 +96,7 @@ runs:
         JOB_CONTEXT: ${{ toJson(job) }}
         RUNNER_CONTEXT: ${{ toJson(runner) }}
         INPUTS_GITHUB_TOKEN: ${{ inputs.github_token }}
+        PYTHONUTF8: 1
       run: "${GITHUB_ACTION_PATH}/entorypoint.sh"
       working-directory: ${{ inputs.working-directory }}
 
