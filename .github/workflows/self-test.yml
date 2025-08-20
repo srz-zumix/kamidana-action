@@ -13,7 +13,7 @@ jobs:
           - macos-latest
           - windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: kamidana
         id: kamidana
         uses: ./
@@ -32,7 +32,7 @@ jobs:
   dump-context:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: kamidana
         id: kamidana
         uses: ./
@@ -44,7 +44,7 @@ jobs:
   no-output-file:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: kamidana
         id: kamidana
         uses: ./

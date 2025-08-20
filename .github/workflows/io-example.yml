@@ -6,7 +6,7 @@ jobs:
   io-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Create TestData
         run: |
           cat << 'EOS' > io-test.j2
@@ -43,7 +43,7 @@ jobs:
   io-example:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: kamidana
         id: kamidana
         uses: ./
@@ -60,7 +60,7 @@ jobs:
   io-example-wd:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: kamidana
         id: kamidana
         uses: ./
