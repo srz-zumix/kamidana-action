@@ -2,11 +2,16 @@ name: Variables-And-Multi-Data-File-Example
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   variables-and-multi-data-file-example:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - name: kamidana
         id: kamidana
         uses: ./

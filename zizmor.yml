@@ -1,0 +1,14 @@
+rules:
+  template-injection:
+    ignore:
+      - additionals-example.yml:35
+      - default-example.yml:24
+      - default-example.yml:30
+      - extensions-example.yml:24
+      - extensions-example.yml:29
+      - io-example.yml:63
+      - io-example.yml:83
+      - self-test.yml:33
+      - variables-and-multi-data-file-example.yml:30
+      - variables-and-single-data-file-example.yml:28
+      - variables-and-single-data-file-example.yml:53

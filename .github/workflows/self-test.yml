@@ -2,6 +2,9 @@ name: Self Test
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   os-test:
     runs-on: ${{ matrix.os }}
@@ -14,6 +17,8 @@ jobs:
           - windows-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - name: kamidana
         id: kamidana
         uses: ./
@@ -33,6 +38,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - name: kamidana
         id: kamidana
         uses: ./
@@ -45,6 +52,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - name: kamidana
         id: kamidana
         uses: ./
