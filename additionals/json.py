@@ -22,3 +22,12 @@ def json_dumps(ctx, v, *, ensure_ascii=False, indent=None, sort_keys=False):
 @pass_context
 def json_loads(ctx, v):
   return json.loads(v)
+
+
+@as_filter
+@pass_context
+def json_escape(ctx, v, *, ensure_ascii=False, indent=None, sort_keys=False):
+  result = json.dumps(v, ensure_ascii=ensure_ascii, indent=indent, sort_keys=sort_keys)
+  if isinstance(v, str) and result.startswith('"') and result.endswith('"'):
+    return result[1:-1]
+  return result
