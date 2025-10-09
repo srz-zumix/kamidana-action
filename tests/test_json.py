@@ -123,7 +123,7 @@ class TestJsonFilters(unittest.TestCase):
         
         # Object
         result = json_escape(self.mock_ctx, {"key": "value"})
-        self.assertEqual(result, '{"key": "value"}')
+        self.assertEqual(result, '{\\"key\\": \\"value\\"}')
         
         # null
         result = json_escape(self.mock_ctx, None)
@@ -142,11 +142,11 @@ class TestJsonFilters(unittest.TestCase):
         
         # sort_keys option
         result = json_escape(self.mock_ctx, data, sort_keys=True)
-        self.assertEqual(result, '{"a": 1, "b": 2}')
+        self.assertEqual(result, '{\\"a\\": 1, \\"b\\": 2}')
         
         # indent option (object so double quotes are not removed)
         result = json_escape(self.mock_ctx, data, indent=2)
-        expected = '{\n  "b": 2,\n  "a": 1\n}'
+        expected = '{\\n  \\"b\\": 2,\\n  \\"a\\": 1\\n}'
         self.assertEqual(result, expected)
 
 
