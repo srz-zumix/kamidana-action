@@ -20,5 +20,16 @@ def json_dumps(ctx, v, *, ensure_ascii=False, indent=None, sort_keys=False):
 
 @as_filter
 @pass_context
+def json_escape(ctx, v, *, ensure_ascii=False, indent=None, sort_keys=False):
+  result = json.dumps(v, ensure_ascii=ensure_ascii, indent=indent, sort_keys=sort_keys)
+  if not isinstance(v, str):
+    result = json.dumps(result, ensure_ascii=ensure_ascii, indent=indent, sort_keys=sort_keys)
+  if result.startswith('"') and result.endswith('"'):
+    return result[1:-1]
+  return result
+
+
+@as_filter
+@pass_context
 def json_loads(ctx, v):
   return json.loads(v)

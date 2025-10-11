@@ -39,6 +39,7 @@
     * [json_query](https://jmespath.org/)
       * [playground](https://play.jmespath.org/)
     * json_dumps
+    * json_escape
     * json_loads
   * [to_yaml](additionals/to_yaml.py)
     * to_yaml
@@ -83,11 +84,16 @@ name: Default-Example
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   default-example:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - name: kamidana
         id: kamidana
         uses: srz-zumix/kamidana-action@main
@@ -124,11 +130,16 @@ name: Variables-And-Multi-Data-File-Example
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   variables-and-multi-data-file-example:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - name: kamidana
         id: kamidana
         uses: srz-zumix/kamidana-action@main
@@ -189,11 +200,16 @@ on:
 env:
   SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
 
+permissions:
+  contents: read
+
 jobs:
   additionals-example:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - name: kamidana
         id: kamidana
         uses: srz-zumix/kamidana-action@main
@@ -240,11 +256,16 @@ name: IO-Example
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   io-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - name: Create TestData
         run: |
           cat << 'EOS' > io-test.j2
@@ -281,7 +302,9 @@ jobs:
   io-example:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - name: kamidana
         id: kamidana
         uses: srz-zumix/kamidana-action@main
@@ -298,7 +321,9 @@ jobs:
   io-example-wd:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - name: kamidana
         id: kamidana
         uses: srz-zumix/kamidana-action@main
@@ -355,11 +380,16 @@ name: Extensions-Example
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   extensions-example:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - name: kamidana
         id: kamidana
         uses: srz-zumix/kamidana-action@main
