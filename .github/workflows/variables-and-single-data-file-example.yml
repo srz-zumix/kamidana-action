@@ -2,11 +2,16 @@ name: Variables-And-Single-Data-File-Example
 on:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   variables-and-single-data-file-example:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - name: kamidana
         id: kamidana
         uses: ./
@@ -27,7 +32,9 @@ jobs:
   variables-and-data-file-example-2:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - name: kamidana
         id: kamidana
         uses: ./
