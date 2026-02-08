@@ -1,4 +1,8 @@
 rules:
+  unpinned-uses:
+    config:
+      policies:
+        actions/*: any
   template-injection:
     ignore:
       - additionals-example.yml:35
