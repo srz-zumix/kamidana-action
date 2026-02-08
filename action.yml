@@ -41,7 +41,7 @@ inputs:
     required: false
   python-version:
     description: 'setup-python python-version. if empty, skip setup-python.'
-    default: '3.10'
+    default: '3.13'
     required: false
   github_token:
     description: 'github token for github filter'
