@@ -1,0 +1,10 @@
+# export settings
+.github/** export-ignore
+readme/** export-ignore
+testdata/** export-ignore
+tests/** export-ignore
+*.md export-ignore
+.* export-ignore
+*.yaml export-ignore
+zizmor.yml export-ignore
+Makefile export-ignore

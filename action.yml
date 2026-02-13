@@ -40,7 +40,7 @@ inputs:
     default: ${{ github.workspace }}
     required: false
   python-version:
-    description: 'setup-python python-version. if empty, skip setup-python.'
+    description: 'setup-python python-version'
     default: '3.13'
     required: false
   github_token:
