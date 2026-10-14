@@ -86,7 +86,12 @@ fi
 # do kamidana
 
 do_kamidana() {
-    echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" "${ADITIONALS_OPTIONS[@]}" "${INPUTS_TEMPLATE:-$1}" "${@:2:($#-1)}"
+    local template="${INPUTS_TEMPLATE:-$1}"
+    case "${template}" in
+        /* | ./* | ../* | [[:alpha:]]:[/\\]*) ;;
+        *) template="./${template}" ;;
+    esac
+    echo "${INPUTS_VARIABLES:-}" | kamidana "${KAMIDANA_OPTINOS[@]}" "${ADITIONALS_OPTIONS[@]}" "${template}" "${@:2:($#-1)}"
 }
 
 if [ "${INPUTS_DUMP_CONTEXT:-false}" = "true" ]; then
