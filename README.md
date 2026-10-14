@@ -57,7 +57,7 @@
 {{ github.workflow }}
 {{ "ng" | status_color }}
 {{ job.status | outcome_color | discord_color }}
-{{ (github.actor | github_user).html_url }}
+{{ ('srz-zumix' | github_user).html_url }}
 {{ github.ref_protected | ternary('protected', '') }}
 {{ github.ref | regex_replace('refs/.*/(.*)', '\1') }}
 {{ github.ref_name | b64encode }}
